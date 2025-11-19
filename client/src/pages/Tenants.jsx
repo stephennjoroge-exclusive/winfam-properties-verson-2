@@ -96,8 +96,7 @@ useEffect(() => {
 
   const fetchUnits = async () => {
     try {
-      const response = await getAPI(
-        `/units/?property_id=${selectedPropertyId}`
+      const response = await getAPI(`/units/?property_id=${selectedPropertyId}`
       );
       setUnit(response.data.results || []);
     } catch (error) {
