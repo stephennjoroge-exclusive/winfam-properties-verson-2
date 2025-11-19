@@ -10,6 +10,7 @@ import {useState, useEffect} from 'react'
 import LandlordModel from '../components/modals/LandlordModel';
 import DeleteModalPage from '../components/modals/DeleteModalPage';
 import axios from 'axios'
+import useDynamicAPI from './useDynamicAPI';
 
 const Landlord = () => {
   const [openModal, setOpenModal] = useState(false)
@@ -30,9 +31,10 @@ const Landlord = () => {
   const [filterData, setFilterData] = useState({
     search: ''
   })
+  const {getAPI, deleteAPI, postAPI} = useDynamicAPI();
 
   
-  const fetchData = async (url = 'http://localhost:8000/landlords/') =>{
+  const fetchData = async (url = '/landlords/') =>{
    try{
     const urlObj = new URL(url, 'http://localhost:8000');
     const params = new URLSearchParams(urlObj.search);
@@ -60,21 +62,16 @@ const Landlord = () => {
   },[])
 
   useEffect(() =>{
-    fetch('http://127.0.0.1:8000/landlords/')
-      .then((response) =>{
-        if(!response.ok){
-          throw new Error('The was an error fetching the data')
-        }
-        return response.json()
-      })
-      .then((data) =>{
-        setLandlord(data.results || []);
-        setLoading(false);
-      })
-      .catch((error) =>{
-        console.log('There was an error',error)
-        setLoading(false);
-      })
+    const fetchData = async () => {
+      try{
+        const response = getAPI('/landlords/')
+        setLandlord(response.results || [])
+      }catch(error){
+        console.log('There was an error', error)
+      }finally{
+        setLoading(false)
+      }
+    }
   },[])
 
   const handleEdit = (id) =>{

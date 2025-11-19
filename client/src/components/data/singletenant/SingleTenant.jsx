@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { IoMdClose } from "react-icons/io";
 import { FaArrowTrendUp } from "react-icons/fa6";
-import SingleTenantgraph from '../singletenant/singleTenantgraph';
+import SingleTenantgraph from '../singletenant/SingleTenantgraph';
 import {useEffect, useState} from 'react'
 import { IoIosArrowDown } from "react-icons/io";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi2";

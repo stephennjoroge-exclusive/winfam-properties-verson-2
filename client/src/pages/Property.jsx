@@ -9,9 +9,9 @@ import PropertyData from '../components/data/PropertyData';
 import {useState, useEffect} from 'react'
 import PropertyModal from '../components/modals/PropertyModal';
 import axios from 'axios'
+import useDynamicAPI from './useDynamicAPI';
 
 const property = () => {
-
   const [openModal, setOpenModal]  = useState(false)
   const [landlord, setLandlord] = useState([])
   const [property, setProperty] = useState([])
@@ -27,9 +27,9 @@ const property = () => {
     location: '',
     total_units: ''
   }) 
-
+const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
   
-  const fetchData = async (url = 'http://localhost:8000/property/') => {
+  const fetchData = async (url = '/property/') => {
     try{
       const urlObj = new URL(url, 'http://localhost:8000/');
       const params = new URLSearchParams(urlObj.search);
@@ -54,30 +54,25 @@ const property = () => {
   },[])
 
   
+ useEffect(() => {
+  const fetchData = async () => {
+    try{
+      const response = getAPI('/property/')
+      setProperty(response.results || [])
+    } catch(error){
+      console.log('There was error', error)
+    }finally{
+      setLoading(false)
+    }
+  }
 
-  useEffect(() =>{
-    fetch('http://127.0.0.1:8000/property/')
-      .then((response) =>{
-        if(!response.ok){
-          throw new Error('Failed to fetch the data')
-        }
-        return response.json()
-      })
-      .then((data) =>{
-        setProperty(data.results || [])
-        setLoading(false)
-      })
-      .catch((error) =>{
-        console.log('There was an error fetching the properties', error);
-        setLoading(false)
-      })
-      
-  },[])
+  fetchData();
+ }, [])
 
   useEffect(() => {
     if (!openModal) return;
     setFetchingLandlords(true)
-    axios.get('http://localhost:8000/landlords/')
+    getAPI('http://localhost:8000/landlords/')
       .then(response => {
         setLandlord(response.data.results || [])
         setTimeout(() =>  setFetchingLandlords(false), 1000)
@@ -98,7 +93,7 @@ const property = () => {
 
   const handleDelete = async (id) => {
     try{
-      const response = await axios.delete(`http://localhost:8000/property/${id}/`);
+      const response = await deleteAPi(`/property/${id}/`);
       setProperty(prev => prev.filter(items => items.id !== id))
     }catch(error){
       console.log(error)

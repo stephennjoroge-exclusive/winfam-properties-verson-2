@@ -10,6 +10,7 @@ import { FiFilter } from "react-icons/fi";
 import PaymentsData from '../components/data/PaymentsData';
 import PaymentModal from '../components/modals/PaymentModal'
 import axios from 'axios'
+import useDynamicAPI from './useDynamicAPI';
 
 const Payments = () => {
   const [openModal, setOpenModal] = useState(false)
@@ -47,8 +48,9 @@ const Payments = () => {
     deposit: '',
     date_issued: '',
   })
+  const {deleteAPI, postAPI, getAPi} = useDynamicAPI();
 
-  const fetchData = async (url = 'http://localhost:8000/payments/') => {
+  const fetchData = async (url = '/payments/') => {
     try{
       const urlObj = new URL(url, 'http://localhost:8000/');
       const params = new URLSearchParams(urlObj.search);
@@ -86,24 +88,20 @@ const Payments = () => {
     fetchData();
   },[methodSelected, unitSelected, rentSelected, filterData])
 
+  useEffect(() => {
+    const fetchData  = async () =>{
+      try{
+        const response = getAPi('/payments/');
+        setPayments(response.results || [])
+      }catch(error){
+        console.log('There was an error', error)
+      }finally{
+        setLoading(false)
+      }
+    }
 
-  useEffect(() =>{
-    fetch('http://127.0.0.1:8000/payments/')
-      .then((response) =>{
-        if(!response.ok){
-          throw new Error('There was an error fetching the data')
-        }
-        return response.json()
-      })
-      .then((data) =>{
-        setPayments(data.results || []);
-        setLoading(false)
-      })
-      .catch((error) =>{
-        console.log('There was an error fetching the data', error);
-        setLoading(false)
-      })
-  },[openModal])
+    fetchData()
+  }, [])
 
   const handleEdit = (id) =>{
     const paymentEdit = payments.find(items => items.id === id);

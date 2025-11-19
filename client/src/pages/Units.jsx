@@ -9,6 +9,7 @@ import { FiFilter } from "react-icons/fi";
 import UnitsData from '../components/data/UnitData';
 import UnitModal from '../components/modals/UnitModal'
 import axios from 'axios'
+import useDynamicAPI from './useDynamicAPI'
 
 
 const Units = () => {
@@ -45,10 +46,12 @@ const Units = () => {
     unit_status: '',
   })
 
+  const {getAPI, postAPI, deleteAPI} = useDynamicAPI()
+
 
 
     useEffect(() =>{
-      fetch('http://127.0.0.1:8000/units/')
+      fetch(`${API}/tenants/`)
         .then((response) =>{
           if(!response.ok){
             throw new Error('Units couldn\'t be fetched from the database')
@@ -74,7 +77,7 @@ const Units = () => {
 
     const handleDelete = async (id) => {
       try {
-        await axios.delete(`http://localhost:8000/units/${id}/`);
+        await deleteAPI(`/units/${id}/`);
         setUnit(prev => prev.filter(items => items.id !== id));
       } catch (error) {
         console.log(error)
@@ -82,7 +85,7 @@ const Units = () => {
     }
 
     
-    const fetchData = async (url = "http://localhost:8000/units/") => {
+    const fetchData = async (url = "/units/") => {
       try {
         const urlObj = new URL(url, "http://localhost:8000/");
         const params = new URLSearchParams(urlObj.search);
@@ -129,7 +132,7 @@ const Units = () => {
 
     const export_data = () => {
       const params = new URLSearchParams(filterData).toString();
-      window.open(`http://localhost:8000/units/export/?${params}`);
+      window.open(`${import.meta.env.VITE_API_URL}/units/export/?${params}`);
     }
     
 

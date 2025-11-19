@@ -11,6 +11,7 @@ import TenantModal from '../components/modals/TenantModal'
 import SingleTenant from '../components/data/singletenant/SingleTenant';
 import axios from 'axios'
 import { IoFilter } from "react-icons/io5";
+import useDynamicAPI from './useDynamicAPI';
 
 
 const Tenants = () => {
@@ -47,8 +48,9 @@ const Tenants = () => {
       move_in_date: "", 
   })
   const [selectedPropertyId, setSelectedPropertyId] = useState(formData.property || '');
+  const {getAPI, postAPI, deleteAPI} = useDynamicAPI();
 
-  const fetchData =async (url = 'http://localhost:8000/tenants/') => {
+  const fetchData =async (url = '/tenants/') => {
   try{
     const urlObj = new URL(url, 'http://localhost:8000')
     const params = new URLSearchParams(urlObj.search);
@@ -70,7 +72,7 @@ const Tenants = () => {
     if(filterData.vacant) params.set('vacant', filterData.vacant.toLowerCase());
 
     const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`
-    const response = await axios.get(finalUrl);
+    const response = await getAPI(finalUrl);
 
     setTenants(response.data.results || [])
     setNext(response.data.next)
@@ -95,7 +97,7 @@ useEffect(() => {
   const fetchUnits = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/units/?property_id=${selectedPropertyId}`
+        `/units/?property_id=${selectedPropertyId}`
       );
       setUnit(response.data.results || []);
     } catch (error) {
@@ -104,7 +106,7 @@ useEffect(() => {
   };
 
   fetchUnits();
-}, [selectedPropertyId]);
+}, [selectedPropertyId, getAPI]);
 
 
   const handleEdit = (id) => {
@@ -117,7 +119,7 @@ useEffect(() => {
 
   const handleDelete = (id) => {
     try{
-      axios.delete(`http://localhost:8000/tenants/${id}/`)
+      axios.delete(`/tenants/${id}/`)
       setTenants(prev => prev.filter(items => items.id !== id))
     } catch(error){
       console.log(error)
@@ -126,7 +128,7 @@ useEffect(() => {
 
   const export_data = () => {
     const params = new URLSearchParams(filterData).toString();
-    window.open(`http://localhost:8000/tenants/export/?${params}`)
+    window.open(`${import.meta.env.VITE_API_URL}/tenants/export/?${params}`);
   }
 
 
@@ -273,5 +275,3 @@ useEffect(() => {
 }
 
 export default Tenants
-
-

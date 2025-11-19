@@ -9,6 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import ExpensesData from '../components/data/ExpensesData';
 import ExpensesModal from '../components/modals/ExpensesModal';
 import axios from 'axios'
+import useDynamicAPI from './useDynamicAPI';
 
 const Expenses = () => {
   const [expenses, setExpenses] = useState([])
@@ -30,8 +31,9 @@ const Expenses = () => {
     description: '',
     date: ''
   })
+  const {postAPI, deleteAPI, getAPI} = useDynamicAPI()
 
-  const fetchData = async(url = 'http://localhost:8000/expenses/') => {
+  const fetchData = async(url = '/expenses/') => {
     try{
       const urlObj = new URL(url, 'http://localhost:8000/');
       const params = new URLSearchParams(urlObj.search);
@@ -56,22 +58,36 @@ const Expenses = () => {
   },[])
 
   useEffect(() =>{
-    fetch('http://localhost:8000/expenses/')
-      .then((response) =>{
-        if(!response.ok) {
-          throw new Error('There was an error fetching the data')
-        }
-        return response.json()
-      })
-      .then((data) =>{
-        setExpenses(data.results || []);
+
+    const fetchExpenses = async () => {
+      try{
+        const response = await getAPI('/expenses/')
+        setExpenses(response.results || [])
+      }catch(error){
+        console.log('There was an error', error)
+      } finally{
         setLoading(false)
-      })
-      .catch((error) =>{
-        console.log("There was an error fetching the data", error);
-        setLoading(false)
-      })
+      }
+    }
+
+    fetchExpenses()
   },[])
+
+      // fetch(`${API}/expenses/`)
+    //   .then((response) =>{
+    //     if(!response.ok) {
+    //       throw new Error('There was an error fetching the data')
+    //     }
+    //     return response.json()
+    //   })
+    //   .then((data) =>{
+    //     setExpenses(data.results || []);
+    //     setLoading(false)
+    //   })
+    //   .catch((error) =>{
+    //     console.log("There was an error fetching the data", error);
+    //     setLoading(false)
+    //   })
 
    useEffect(() =>{
     if(!openModal) return;
@@ -79,8 +95,8 @@ const Expenses = () => {
     const fetchDetails = async() =>{
       try{
         const [propertyResponse, unitResponse] = await Promise.all([
-          axios.get('http://localhost:8000/property/'),
-          axios.get('http://localhost:8000/units/'),
+          getAPI('/property/'),
+          getAPI('/units/'),
         ]);
 
         setProperty(propertyResponse.data.results || []);
@@ -105,7 +121,7 @@ const Expenses = () => {
 
   const handleDelete = async (id) =>{
     try{
-      await axios.delete(`http://localhost:8000/${id}/`)
+      await deleteAPI(`expenses/${id}/`)
       setExpenses(prev => prev.filter(items => items.id !== id))
     }catch(error){
       console.log(error)
