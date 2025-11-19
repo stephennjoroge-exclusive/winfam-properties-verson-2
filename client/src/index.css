@@ -1,0 +1,15 @@
+
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+@theme{
+    --color-box: 'rgba(255,255,255,0.18)';
+    --color-primary-dark:#081A51;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+.dark input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #111827 inset !important;
+  -webkit-text-fill-color: #9CA3AF !important;
+}

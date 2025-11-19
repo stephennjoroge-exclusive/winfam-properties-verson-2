@@ -1,0 +1,24 @@
+import React from 'react';
+import Cards from '../dashboard/Cards';
+import Charts from './LineChart';
+import LineCharts from './PieChart';
+import RecentTenants from './RecentTenants'
+
+
+const Dashboard = ({isDark}) => {
+  return (
+    <div>
+      <Cards />
+      <div className='flex text-[10px]'>
+        <Charts isDark={isDark}/>
+        <LineCharts isDark={isDark} />
+      </div>
+      <div>
+        <RecentTenants/>
+      </div>
+
+    </div>
+  )
+}
+
+export default Dashboard;
