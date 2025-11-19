@@ -48,7 +48,7 @@ const Payments = () => {
     deposit: '',
     date_issued: '',
   })
-  const {deleteAPI, postAPI, getAPi} = useDynamicAPI();
+  const {deleteAPI, postAPI, getAPI} = useDynamicAPI();
 
   const fetchData = async (url = '/payments/') => {
     try{
@@ -68,7 +68,7 @@ const Payments = () => {
       if(filterData.search) params.set('search', filterData.search.toLowerCase())
 
       const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
-      const response = await axios.get(finalUrl)
+      const response = await getAPI(finalUrl)
 
       console.log(finalUrl)
 
@@ -112,7 +112,7 @@ const Payments = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/payments/${id}/`);
+      await deleteAPI(`http://localhost:8000/payments/${id}/`);
       setPayments(prev => prev.filter(items => items.id !== id));
     } catch(error){
       console.log(error);

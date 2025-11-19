@@ -48,25 +48,19 @@ const Units = () => {
 
   const {getAPI, postAPI, deleteAPI} = useDynamicAPI()
 
-
-
-    useEffect(() =>{
-      fetch(`${API}/tenants/`)
-        .then((response) =>{
-          if(!response.ok){
-            throw new Error('Units couldn\'t be fetched from the database')
-          }
-          return response.json()
-        })
-        .then((data) =>{
-          setUnit(data.results || []);
-          setLoading(false)
-        })
-        .catch((error) =>{
-          console.log('There was an error fetching the data', error);
-          setLoading(false)
-        })
-    },[openModal])
+  useEffect(() =>{
+    const fetchData = async () =>{
+      try{
+        const response = await getAPI(`/units/`)
+          setUnit(response.data.results || [])
+     }catch(error){
+      console.log('There was an error', error)
+     }finally{
+      setLoading(false)
+     }
+    }
+    fetchData()
+  },[])
 
     const handleEdit = (id) => {
       const unitEdit = unit.find(items => items.id === id)
@@ -110,7 +104,7 @@ const Units = () => {
   
         const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
   
-        const response = await axios.get(finalUrl);
+        const response = await getAPI(finalUrl);
   
         setUnit(response.data.results || []);
         setNext(response.data.next);

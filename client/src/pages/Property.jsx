@@ -35,7 +35,7 @@ const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
       const params = new URLSearchParams(urlObj.search);
 
       const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
-      const response = await axios.get(finalUrl);
+      const response = await getAPI(finalUrl);
 
       setProperty(response.data.results || [])
       setNext(response.data.next)

@@ -96,7 +96,7 @@ useEffect(() => {
 
   const fetchUnits = async () => {
     try {
-      const response = await axios.get(
+      const response = await getAPI(
         `/units/?property_id=${selectedPropertyId}`
       );
       setUnit(response.data.results || []);

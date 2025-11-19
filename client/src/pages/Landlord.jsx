@@ -43,7 +43,7 @@ const Landlord = () => {
     if(filterData.search) params.set('search', filterData.search.toLowerCase())
 
     const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
-    const response = await axios.get(finalUrl);
+    const response = await getAPI(finalUrl);
 
     setLandlord(response.data.results || [])
     setNext(response.data.next)
@@ -72,6 +72,7 @@ const Landlord = () => {
         setLoading(false)
       }
     }
+    fetchData()
   },[])
 
   const handleEdit = (id) =>{
