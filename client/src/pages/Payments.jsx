@@ -52,7 +52,7 @@ const Payments = () => {
 
   const fetchData = async (url = '/payments/') => {
     try{
-      const urlObj = new URL(url, 'http://localhost:8000/');
+      const urlObj = new URL(url, import.meta.env.VITE_API_URL);
       const params = new URLSearchParams(urlObj.search);
 
       params.delete('payment_method')

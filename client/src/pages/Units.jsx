@@ -81,7 +81,7 @@ const Units = () => {
     
     const fetchData = async (url = "/units/") => {
       try {
-        const urlObj = new URL(url, "http://localhost:8000/");
+        const urlObj = new URL(url, import.meta.env.VITE_API_URL);
         const params = new URLSearchParams(urlObj.search);
   
         params.delete("unit_type");

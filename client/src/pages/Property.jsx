@@ -31,7 +31,7 @@ const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
   
   const fetchData = async (url = '/property/') => {
     try{
-      const urlObj = new URL(url, 'http://localhost:8000/');
+      const urlObj = new URL(url, import.meta.env.VITE_API_URL);
       const params = new URLSearchParams(urlObj.search);
 
       const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
