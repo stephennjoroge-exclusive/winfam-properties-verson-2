@@ -1,18 +1,18 @@
 import React from 'react'
 
 const useDynamicAPI = () => {
-    const API = import.meta.env.VITE_API_URL;
+    const API = import.meta.env.VITE_API_URL.replace(/\/$/, '');
 
     const getAPI = async (endpoint) => {
-        const response = await fetch(`${API}${endpoint}`)
-        if (!response.ok) {
-            throw new Error(`GET ${endpoint} Failed`)
-        } 
+        const url = endpoint.startsWith('/') ? `${API}${endpoint}` : `${API}/${endpoint}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`GET ${endpoint} Failed`);
         return response.json();
-    }
+    };
 
     const postAPI = async (endpoint, body) => {
-        const response = await fetch(`${API}${endpoint}`, {
+        const url = endpoint.startsWith('/') ? `${API.replace(/\/$/, '')}${endpoint}` : `${API.replace(/\/$/, '')}/${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(body)
@@ -23,7 +23,8 @@ const useDynamicAPI = () => {
         return response.json();
     }
     const deleteAPI = async (endpoint) => {
-        const response = await fetch(`${API}${endpoint}`, {method: 'DELETE',})
+        const url = endpoint.startsWith('/') ? `${API.replace(/\/$/, '')}${endpoint}` : `${API.replace(/\/$/, '')}/${endpoint}`;
+        const response = await fetch(url, {method: 'DELETE',})
         if (!response.ok) {
             throw new Error(`DELETE ${endpoint} Failed`)
         } 

@@ -50,7 +50,7 @@ const Tenants = () => {
   const [selectedPropertyId, setSelectedPropertyId] = useState(formData.property || '');
   const {getAPI, postAPI, deleteAPI} = useDynamicAPI();
 
-  const fetchData =async (url = '/tenants/') => {
+  const fetchData = async (url = `/tenants/`) => {
   try{
     const urlObj = new URL(url, import.meta.env.VITE_API_URL);
     const params = new URLSearchParams(urlObj.search);
@@ -118,7 +118,7 @@ useEffect(() => {
 
   const handleDelete = (id) => {
     try{
-      axios.delete(`/tenants/${id}/`)
+      deleteAPI(`/tenants/${id}/`)
       setTenants(prev => prev.filter(items => items.id !== id))
     } catch(error){
       console.log(error)
