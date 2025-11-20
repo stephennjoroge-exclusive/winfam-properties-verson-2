@@ -71,7 +71,7 @@ const Tenants = () => {
     if(filterData.vacant) params.set('vacant', filterData.vacant.toLowerCase());
 
     const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`
-    const response = await getAPI(finalUrl);
+    const response = await fetch(finalUrl, {headers: {'Content-Type': 'application/json'}});
 
     setTenants(response.data.results || [])
     setNext(response.data.next)
