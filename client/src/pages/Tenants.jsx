@@ -9,7 +9,6 @@ import { IoIosArrowDown } from "react-icons/io";
 import TenantsData from '../components/data/TenantsData';
 import TenantModal from '../components/modals/TenantModal'
 import SingleTenant from '../components/data/singletenant/SingleTenant';
-import axios from 'axios'
 import { IoFilter } from "react-icons/io5";
 import useDynamicAPI from './useDynamicAPI';
 
