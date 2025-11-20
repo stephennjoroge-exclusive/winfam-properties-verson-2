@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-se*3iz7*&hw%ip+j7-r7^l6-xbq58(pz944!r0r@+36(gig4=x
 DEBUG = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://winfam-properties-verson-2-xnvv-5aj30x6lj.vercel.app",
+    "https://winfam-properties-verson-2-xnvv-ip79s4489.vercel.app",
 ]
 
 
