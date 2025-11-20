@@ -5,7 +5,9 @@ const useDynamicAPI = () => {
 
     const getAPI = async (endpoint) => {
         const url = endpoint.startsWith('/') ? `${API}${endpoint}` : `${API}/${endpoint}`;
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            headers: {'Content-Type' : 'application/json'}
+        });
         if (!response.ok) throw new Error(`GET ${endpoint} Failed`);
         return response.json();
     };
