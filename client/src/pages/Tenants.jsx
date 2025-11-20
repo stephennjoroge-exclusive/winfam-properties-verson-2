@@ -70,7 +70,7 @@ const Tenants = () => {
     if(filterData.overdue) params.set('overdue', filterData.overdue.toLowerCase());
     if(filterData.vacant) params.set('vacant', filterData.vacant.toLowerCase());
 
-    const finalUrl = `/tenants/?${params.toString()}`;
+    const finalUrl = `/tenants/` + (params.toString() ? `?${params.toString()}` : '');
     const data = await getAPI(finalUrl);
     console.log(finalUrl)
 
