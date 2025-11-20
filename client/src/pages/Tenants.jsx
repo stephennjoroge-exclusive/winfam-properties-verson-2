@@ -51,7 +51,10 @@ const Tenants = () => {
 
   const fetchData = async (url = `/tenants/`) => {
   try{
-    const urlObj = new URL(url, import.meta.env.VITE_API_URL);
+
+    const fullUrl = url.startsWith('http')
+    const isFullUrl = fullUrl ? url : `${import.meta.env.VITE_API_URL}${url}`;
+    const urlObj = new URL(isFullUrl);
     const params = new URLSearchParams(urlObj.search);
 
     params.delete('unit_status');
@@ -73,10 +76,12 @@ const Tenants = () => {
     const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`
     const response = await fetch(finalUrl, {headers: {'Content-Type': 'application/json'}});
 
-    setTenants(response.data.results || [])
-    setNext(response.data.next)
-    setPrevious(response.data.previous)
-    setCount(response.data.count)
+    const data = await response.json()
+
+    setTenants(data.results || []);
+    setNext(data.next)
+    setPrevious(data.previous)
+    setCount(data.count)
 
     const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
     setCurrentPage(paramPage)
