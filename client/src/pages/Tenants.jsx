@@ -52,11 +52,8 @@ const Tenants = () => {
   const fetchData = async (url = `/tenants/`) => {
   try{
 
-    const fullUrl = url.startsWith('http')
-    const isFullUrl = fullUrl ? url : `${import.meta.env.VITE_API_URL}${url}`;
-    const urlObj = new URL(isFullUrl);
-    const params = new URLSearchParams(urlObj.search);
-
+    setLoading(true)
+    const params = new URLSearchParams();
     params.delete('unit_status');
     params.delete('rent_status');
     params.delete('property');
@@ -73,10 +70,8 @@ const Tenants = () => {
     if(filterData.overdue) params.set('overdue', filterData.overdue.toLowerCase());
     if(filterData.vacant) params.set('vacant', filterData.vacant.toLowerCase());
 
-    const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`
-    const response = await fetch(finalUrl, {headers: {'Content-Type': 'application/json'}});
-
-    const data = await response.json()
+    const finalUrl = `${url}?${params.toString()}`;
+    const data = await getAPI(finalUrl);
 
     setTenants(data.results || []);
     setNext(data.next)
@@ -102,14 +97,14 @@ useEffect(() => {
     try {
       const response = await getAPI(`/units/?property_id=${selectedPropertyId}`
       );
-      setUnit(response.data.results || []);
+      setUnit(response.results || []);
     } catch (error) {
       console.log(error);
     }
   };
 
-  fetchUnits();
-}, [selectedPropertyId, getAPI]);
+    fetchUnits();
+  }, [selectedPropertyId]);
 
 
   const handleEdit = (id) => {
@@ -120,7 +115,7 @@ useEffect(() => {
   }
 
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     try{
       deleteAPI(`/tenants/${id}/`)
       setTenants(prev => prev.filter(items => items.id !== id))
