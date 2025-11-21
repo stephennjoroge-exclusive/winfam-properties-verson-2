@@ -70,12 +70,13 @@ const Tenants = () => {
     if(filterData.overdue) params.set('overdue', filterData.overdue.toLowerCase());
     if(filterData.vacant) params.set('vacant', filterData.vacant.toLowerCase());
 
-    const finalUrl = `${import.meta.env.VITE_API_URL}/tenants/${params.toString() ? `?${params.toString()}` : ''}`;
-    const data = await fetch(finalUrl, {
-      method: 'GET',
-      headers: {'Content-Type' : 'application/json'}
-    });
-    console.log(finalUrl, {headers: {'Content-Type' : 'application/json'}})
+  const finalUrl = `${import.meta.env.VITE_API_URL}/tenants${params.toString() ? `?${params.toString()}` : ''}`;
+  const response = await fetch(finalUrl, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
 
     setTenants(data.results || []);
     setNext(data.next)
