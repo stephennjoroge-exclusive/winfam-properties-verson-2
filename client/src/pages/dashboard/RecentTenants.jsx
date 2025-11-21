@@ -78,7 +78,7 @@ const RecentTenants = ({setInfoModal}) => {
                 </tr>
             ))): (
                 <tr>
-                <td colSpan='10' className="text-center text-gray-500 py-4">
+                <td colSpan='10' className="text-center text-[10px] text-gray-500 py-4">
                     No records found
                 </td>
                 </tr>

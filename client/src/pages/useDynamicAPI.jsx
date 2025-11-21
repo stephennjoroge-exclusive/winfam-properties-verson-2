@@ -1,9 +1,10 @@
+import { useState } from 'react';
 const useDynamicAPI = () => {
     const API = import.meta.env.VITE_API_URL.replace(/\/$/, '')
 
     const getAPI = async (endpoint) => {
         const url = endpoint.startsWith('http') ? endpoint : `${API}${endpoint}`;
-        const response = await fetch(url, {headers: {'Content-Type' : 'application/json'}})
+        const response = await fetch(url)
         if (!response.ok) throw new Error(`GET ${endpoint} Failed`);
         return response.json()
     }

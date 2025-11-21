@@ -72,7 +72,7 @@ const Tenants = () => {
 
     const finalUrl = `/tenants/` + (params.toString() ? `?${params.toString()}` : '');
     const data = await getAPI(finalUrl);
-    console.log(finalUrl)
+    console.log(finalUrl, {headers: {'Content-Type' : 'application/json'}})
 
     setTenants(data.results || []);
     setNext(data.next)
@@ -83,6 +83,8 @@ const Tenants = () => {
     setCurrentPage(paramPage)
   } catch(error){
     console.log('Fetch error', error)
+  }finally{
+    setLoading(false)
   }
 
 }
@@ -98,7 +100,7 @@ useEffect(() => {
     try {
       const response = await getAPI(`/units/?property_id=${selectedPropertyId}`
       );
-      setUnit(response.results || []);
+      setUnit(response.data.results || []);
     } catch (error) {
       console.log(error);
     }
