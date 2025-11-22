@@ -28,10 +28,12 @@ DEBUG = False
 
 CORS_ALLOWED_ORIGINS = [
     "https://winfam-properties-verson-2-xnvv-l49a24i8s.vercel.app",
+    "https://winfam-properties-verson-2.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://winfam-properties-verson-2-xnvv-l49a24i8s.vercel.app",
+    "https://winfam-properties-verson-2.vercel.app",
 ]
 
 ALLOWED_HOSTS = [
