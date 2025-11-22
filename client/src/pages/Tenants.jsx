@@ -48,6 +48,7 @@ const Tenants = () => {
   })
   const [selectedPropertyId, setSelectedPropertyId] = useState(formData.property || '');
   const {getAPI, postAPI, deleteAPI} = useDynamicAPI();
+  const [example, setExample] = useState([])
 
   const fetchData = async (url = `/tenants/`) => {
   try{
@@ -138,6 +139,18 @@ useEffect(() => {
     window.open(`${import.meta.env.VITE_API_URL}/tenants/export/?${params}`);
   }
 
+  useEffect(() => {
+    fetch('https://winfam-properties-verson-2-2.onrender.com/tenants/')
+    .then(res => res.json())
+    .then(data => {
+      setExample(data)
+
+    })
+    .then(error => {
+      console.log(error)
+    })
+  })
+
 
   return (
       <>
@@ -145,6 +158,7 @@ useEffect(() => {
           <div className='flex justify-between'>
             <div className='items-center flex '>
               <p className='text-2xl font-bold flex'>Tenants</p>
+              <p>{example}</p>
             </div>
             <div className='items-center flex w-[70%]} mx-2'>
               <div className='flex m-3 items-center cursor-pointer'>
