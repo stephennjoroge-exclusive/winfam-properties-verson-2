@@ -34,6 +34,13 @@ CSRF_TRUSTED_ORIGINS = [
     "https://winfam-properties-verson-2-ewy8-oz9i2tux6.vercel.app",
 ]
 
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'winfam-properties-verson-2-2.onrender.com',
+    'winfam-properties-verson-2-ewy8-oz9i2tux6.vercel.app',
+    '.vercel.app',
+]
 
 
 # Application definition
