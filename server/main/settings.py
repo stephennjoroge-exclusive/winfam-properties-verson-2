@@ -27,26 +27,20 @@ SECRET_KEY = 'django-insecure-se*3iz7*&hw%ip+j7-r7^l6-xbq58(pz944!r0r@+36(gig4=x
 DEBUG = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://winfam-properties-verson-2-xnvv-9je87dmqr.vercel.app",
-    "https://winfam-properties-verson-2-ewy8-6j387o2bz.vercel.app",
+    "https://winfam-properties-verson-2-j1nxzhbk6.vercel.app"
     "https://winfam-properties-verson-2.vercel.app",
-    'https://winfam-properties-verson-2-xnvv-o20r4zpqn.vercel.app'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://winfam-properties-verson-2-xnvv-9je87dmqr.vercel.app",
-    "https://winfam-properties-verson-2-ewy8-6j387o2bz.vercel.app",
+    "https://winfam-properties-verson-2-j1nxzhbk6.vercel.app"
     "https://winfam-properties-verson-2.vercel.app",
-    'https://winfam-properties-verson-2-xnvv-o20r4zpqn.vercel.app'
 ]
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'winfam-properties-verson-2-2.onrender.com',
-    'winfam-properties-verson-2-xnvv-9je87dmqr.vercel.app',
-    "winfam-properties-verson-2-ewy8-6j387o2bz.vercel.app",
-    'winfam-properties-verson-2-xnvv-o20r4zpqn.vercel.app'
+    "winfam-properties-verson-2-j1nxzhbk6.vercel.app",
     '.vercel.app',
 ]
 
