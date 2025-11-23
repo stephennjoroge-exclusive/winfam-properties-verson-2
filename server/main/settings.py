@@ -30,6 +30,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://winfam-properties-verson-2-j1nxzhbk6.vercel.app",
     "https://winfam-properties-verson-2-ewy8-6j387o2bz.vercel.app",
     "https://winfam-properties-verson-2-qqp7xi9pn.vercel.app",
+    "https://winfam-properties-verson-2-qrswb8p3k.vercel.app",
     "https://winfam-properties-verson-2.vercel.app",
 ]
 
@@ -37,6 +38,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://winfam-properties-verson-2-j1nxzhbk6.vercel.app",
     "https://winfam-properties-verson-2-ewy8-6j387o2bz.vercel.app",
     "https://winfam-properties-verson-2-qqp7xi9pn.vercel.app",
+    "https://winfam-properties-verson-2-qrswb8p3k.vercel.app",
     "https://winfam-properties-verson-2.vercel.app",
 ]
 
@@ -47,6 +49,7 @@ ALLOWED_HOSTS = [
     "winfam-properties-verson-2-j1nxzhbk6.vercel.app",
     "winfam-properties-verson-2-ewy8-6j387o2bz.vercel.app",
     "winfam-properties-verson-2-qqp7xi9pn.vercel.app",
+    "winfam-properties-verson-2-qrswb8p3k.vercel.app",
     '.vercel.app',
 ]
 
