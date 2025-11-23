@@ -80,7 +80,7 @@ const Tenants = () => {
 
     const data = await response.json()
 
-    setTenants(data.results || []);
+    setTenants(Array.isArray(data) ? data : (data.results || []));
     setNext(data.next)
     setPrevious(data.previous)
     setCount(data.count)
