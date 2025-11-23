@@ -70,7 +70,7 @@ const Tenants = () => {
     if(filterData.overdue) params.set('overdue', filterData.overdue.toLowerCase());
     if(filterData.vacant) params.set('vacant', filterData.vacant.toLowerCase());
 
-  const finalUrl = `${import.meta.env.VITE_API_URL}/tenants/${params.toString() ? `?${params.toString()}` : ''}`;
+  const finalUrl = `${API}/tenants/${params.toString() ? `?${params.toString()}` : ''}`;
   console.log(finalUrl)
   const response = await fetch(finalUrl, {
     method: 'GET',
