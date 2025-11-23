@@ -49,7 +49,7 @@ const Tenants = () => {
   const [selectedPropertyId, setSelectedPropertyId] = useState(formData.property || '');
   const {getAPI, postAPI, deleteAPI} = useDynamicAPI();
 
-  const fetchData = async (url = 'https://winfam-properties-verson-2-2.onrender.com/tenants/') => {
+  const fetchData = async (url = '/tenants/') => {
   try{
 
     setLoading(true)
