@@ -56,6 +56,8 @@ const Landlord = () => {
     setCurrentPage(paramPage)
    } catch(error){
     console.log("Fetch error", error)
+   } finally{
+    setLoading(false)
    }
   }
 
