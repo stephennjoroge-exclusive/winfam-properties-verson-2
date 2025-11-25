@@ -38,7 +38,7 @@ const Landlord = () => {
    try{
     setLoading(true)
 
-    const params = new URLSearchParams(urlObj.search);
+    const params = new URLSearchParams();
 
     params.delete('search')
     if(filterData.search) params.set('search', filterData.search.toLowerCase())
