@@ -63,19 +63,19 @@ const Landlord = () => {
     fetchData()
   },[])
 
-  useEffect(() =>{
-    const fetchData = async () => {
-      try{
-        const response = getAPI('/landlords/')
-        setLandlord(response.results || [])
-      }catch(error){
-        console.log('There was an error', error)
-      }finally{
-        setLoading(false)
-      }
-    }
-    fetchData()
-  },[])
+  // useEffect(() =>{
+  //   const fetchData = async () => {
+  //     try{
+  //       const response = getAPI('/landlords/')
+  //       setLandlord(response.results || [])
+  //     }catch(error){
+  //       console.log('There was an error', error)
+  //     }finally{
+  //       setLoading(false)
+  //     }
+  //   }
+  //   fetchData()
+  // },[])
 
   const handleEdit = (id) =>{
     const landlordEdit = landlord.find(items => items.id === id)
