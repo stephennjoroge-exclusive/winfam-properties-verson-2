@@ -53,7 +53,7 @@ const Landlord = () => {
     setCount(response.count)
 
     const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
-    setCurrentPage(nextPage ? parseInt(nextPage) - 1 : 1)
+    setCurrentPage(paramPage ? parseInt(paramPage) - 1 : 1)
    } catch(error){
     console.log("Fetch error", error)
    }
