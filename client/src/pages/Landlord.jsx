@@ -48,12 +48,12 @@ const Landlord = () => {
     const response = await getAPI(finalUrl);
 
     setLandlord(Array.isArray(response.results) ? response.results : []);
-    setNext(response.next || [])
+    setNext(response.next)
     setPrevious(response.previous)
     setCount(response.count)
 
     const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
-    setCurrentPage(paramPage)
+    setCurrentPage(nextPage ? parseInt(nextPage) - 1 : 1)
    } catch(error){
     console.log("Fetch error", error)
    }
