@@ -47,10 +47,10 @@ const Landlord = () => {
     console.log(finalUrl)
     const response = await getAPI(finalUrl);
 
-    setLandlord(response.data.results || []);
-    setNext(response.data.next)
-    setPrevious(response.data.previous)
-    setCount(response.data.count)
+    setLandlord(response.results || []);
+    setNext(response.next)
+    setPrevious(response.previous)
+    setCount(response.count)
 
     const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
     setCurrentPage(paramPage)
