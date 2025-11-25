@@ -44,6 +44,7 @@ const Landlord = () => {
     if(filterData.search) params.set('search', filterData.search.toLowerCase())
 
     const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`
+    console.log(finalUrl)
     const response = await getAPI(finalUrl);
 
     setLandlord(Array.isArray(data) ? data : (data.results || []));
