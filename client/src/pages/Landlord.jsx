@@ -46,7 +46,7 @@ const Landlord = () => {
     const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`
     const response = await getAPI(finalUrl);
 
-    setTenants(Array.isArray(data) ? data : (data.results || []));
+    setLandlord(Array.isArray(data) ? data : (data.results || []));
     setNext(response.data.next)
     setPrevious(response.data.previous)
     setCount(response.data.count)
