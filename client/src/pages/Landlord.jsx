@@ -36,16 +36,17 @@ const Landlord = () => {
   
   const fetchData = async (url = '/landlords/') =>{
    try{
-    const urlObj = new URL(url, import.meta.env.VITE_API_URL);
+    setLoading(true)
+
     const params = new URLSearchParams(urlObj.search);
 
     params.delete('search')
     if(filterData.search) params.set('search', filterData.search.toLowerCase())
 
-    const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
+    const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`
     const response = await getAPI(finalUrl);
 
-    setLandlord(response.data.results || [])
+    setTenants(Array.isArray(data) ? data : (data.results || []));
     setNext(response.data.next)
     setPrevious(response.data.previous)
     setCount(response.data.count)

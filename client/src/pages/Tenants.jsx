@@ -71,7 +71,6 @@ const Tenants = () => {
     if(filterData.vacant) params.set('vacant', filterData.vacant.toLowerCase());
 
   const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`;
-  console.log(finalUrl)
   const data = await getAPI(finalUrl)
 
     setTenants(Array.isArray(data) ? data : (data.results || []));
