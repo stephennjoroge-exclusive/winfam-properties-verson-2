@@ -47,7 +47,7 @@ const Landlord = () => {
     console.log(finalUrl)
     const response = await getAPI(finalUrl);
 
-    setLandlord(Array.isArray(response) ? response : (response.results || []));
+    setLandlord(response.data.results || []);
     setNext(response.data.next)
     setPrevious(response.data.previous)
     setCount(response.data.count)
@@ -62,20 +62,6 @@ const Landlord = () => {
   useEffect(() => {
     fetchData()
   },[])
-
-  // useEffect(() =>{
-  //   const fetchData = async () => {
-  //     try{
-  //       const response = getAPI('/landlords/')
-  //       setLandlord(response.results || [])
-  //     }catch(error){
-  //       console.log('There was an error', error)
-  //     }finally{
-  //       setLoading(false)
-  //     }
-  //   }
-  //   fetchData()
-  // },[])
 
   const handleEdit = (id) =>{
     const landlordEdit = landlord.find(items => items.id === id)
