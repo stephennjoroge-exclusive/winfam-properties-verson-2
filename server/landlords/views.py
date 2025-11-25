@@ -23,7 +23,7 @@ def landlord(request):
         filter_landlord = LandlordFilter(request.GET, queryset = landlord)
         landlord = filter_landlord.qs
         paginator = PageNumberPagination()
-        paginator.page_size = 14
+        paginator.page_size = 50
         result_page = paginator.paginate_queryset(landlord, request)
         serializer = LandlordSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
