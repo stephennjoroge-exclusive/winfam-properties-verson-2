@@ -1,6 +1,6 @@
 import { useState } from 'react';
 const useDynamicAPI = () => {
-     const API = (import.meta.env.VITE_API_URL || 'https://winfam-properties-verson-2-p7uj9uihf.vercel.app.com').replace(/\/$/, '');
+     const API = (import.meta.env.VITE_API_URL || 'https://winfam-properties-verson-2.vercel.app.com').replace(/\/$/, '');
 
     const getAPI = async (endpoint) => {
         const url = endpoint.startsWith('http') ? endpoint : `${API}${endpoint}`;
