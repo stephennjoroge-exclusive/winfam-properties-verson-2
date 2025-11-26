@@ -6,17 +6,10 @@ export default function Dashboard() {
   const [data, setData] = useState([]);
   const {getAPI} = useDynamicAPI()
 
-  const fetchData = async (url = '/analytics/') => {
-    try{
-      const params = new URLSearchParams()
+  const fetchData = async() => {
+    const response = getAPI('/dashboard/')
 
-      const finalURL = `${url}${toString() ? `?${toString()}` : ''}`
-      const response = await getAPI(finalURL)
-
-      setData(response.occupied_units)
-    }catch(error) {
-      console.log('There was an error', error)
-    }
+    setData(response.occupied_units)
   }
 const COLORS = ["#3B82F6", "#2563EB", "#22C55E", "#16A34A", "#4ADE80", "#F97316", "#FB923C", "#F59E0B", "#FCD34D", "#3B82F6"];
 

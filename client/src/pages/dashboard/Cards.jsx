@@ -8,20 +8,21 @@ export default function Cards({isDark}) {
    const [numOfLandlords, setNumOfLandlords] = useState(null)
    const [numOfTenants, setNumofTenants] = useState(null)
 
-    const fetchData = async (url = '/dashboard/') => {
-        const params = new URLSearchParams()
+    const fetchData = async () => {
+        try {
+        const response = await getAPI("/dashboard/");
 
-        const finalURL = `${url}${toString() ? `?${toString()}` : ''}`
-        const response = await getAPI (finalURL)
-
-        setTotalRent(response.total_rent)
-        setNumOfLandlords(response.No_of_landlords)
-        setNumofTenants(response.No_of_Tenants)
-    }
+        setTotalRent(response.total_rent);
+        setNumOfLandlords(response.No_of_landlords);
+        setNumOfTenants(response.No_of_Tenants);
+        } catch (error) {
+        console.error("Dashboard fetch error:", error);
+        }
+    };
 
     useEffect(() => {
-        fetchData()
-    },[])
+        fetchData();
+    }, []);
      
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4'>
