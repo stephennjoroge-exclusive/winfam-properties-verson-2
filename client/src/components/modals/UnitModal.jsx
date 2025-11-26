@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import { IoMdClose } from "react-icons/io";
-import axios from 'axios'
+import useDynamicAPI from '../../pages/useDynamicAPI';
 
 const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, property, setProperty}) => {
   if(!openModal) return null;
@@ -10,6 +10,7 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [fetchingData, setFetchingData] = useState(false)
+  const {getAPI, postAPI, putAPI} = useDynamicAPI()
 
 
   const handleSubmit = async (e, action) =>{
@@ -20,13 +21,9 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
 
     try{
       if(formData.id){
-        await axios.patch(`http://localhost:8000/units/${formData.id}/`, formData, {
-          headers: {'Content-Type': 'application/json'}
-        });
+        await putAPI(`/units/${formData.id}/`, formData);
       } else {
-        await axios.post('http://localhost:8000/units/', formData, {
-        headers: {'Content-Type':'application/json'}
-      });
+        await postAPI('/units/', formData);
       }
       await fetchData()
       setSuccess('Unit created successfully!');
@@ -60,16 +57,15 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
   }
 
   useEffect(() =>{
-    if (!openModal) return;
-    setFetchingData(true);
-    axios.get('http://localhost:8000/property/')
-      .then(response =>{
-        setProperty(response.data.results || []);
-        setTimeout(() => setFetchingData(false), 2000)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+   try {
+    setFetchingData(true)
+    const response = getAPI('/property/')
+    setProperty(response.results)
+   }catch(error){
+    console.log('There was an error fetching the properties')
+   }finally{
+    setFetchingData(false)
+   }
 
   }, [openModal])
 
