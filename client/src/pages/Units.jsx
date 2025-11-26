@@ -52,7 +52,7 @@ const Units = () => {
     const fetchData = async () =>{
       try{
         const response = await getAPI(`/units/`)
-          setUnit(response.data.results || [])
+        setUnit(response.results || [])
      }catch(error){
       console.log('There was an error', error)
      }finally{
