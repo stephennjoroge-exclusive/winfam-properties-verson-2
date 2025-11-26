@@ -6,23 +6,44 @@ const RecentTenants = ({setInfoModal}) => {
     const [loading, setLoading] = useState(false)
     const {getAPI} = useDynamicAPI();
 
-  useEffect(() =>{
-    getAPI('/tenants/')
-      .then((response) =>{
-        if(!response.ok){
-          throw new Error('There was an error fetching the data')
-        }
-        return response.json()
-      })
-      .then((data) =>{
-        setTenants(data.results || []);
+
+   const fetchData = async (url = '/dashboard/') => {
+      try{ 
+        setLoading(true)
+        const params = new URLSearchParams()
+
+        const finalURL = `${url}${toString() ? `?${toString()}` : ''}`
+        const response = await getAPI(finalURL)
+      } catch(error){
+        console.log('There was an error fetching the data', error)
+      }finally{
         setLoading(false)
-      })
-      .catch((error) =>{
-        console.log('There was an error fetching the data', error);
-        setLoading(false)
-      })
-  },[])
+      }
+   }
+
+   useEffect(() => {
+    fetchData()
+   },[])
+
+  // useEffect(() =>{
+  //   getAPI('/tenants/')
+  //     .then((response) =>{
+  //       if(!response.ok){
+  //         throw new Error('There was an error fetching the data')
+  //       }
+  //       return response.json()
+  //     })
+  //     .then((data) =>{
+  //       setTenants(data.results || []);
+  //       setLoading(false)
+  //     })
+  //     .catch((error) =>{
+  //       console.log('There was an error fetching the data', error);
+  //       setLoading(false)
+  //     })
+  // },[])
+
+  
 
   return (
     <div className='relative overflow-scroll'>
@@ -31,6 +52,7 @@ const RecentTenants = ({setInfoModal}) => {
         <button className='bg-blue-600 cursor-pointer px-2 py-1 rounded text-white text-[10px]'>All Tenants</button>
 
       </div>
+        {(!tenants) && <p>Loading...</p>}
         <table className="min-w-full rounded-lg text-gray-700 dark:text-gray-400 text-left">
             <thead className="border-b text-[10px] border-gray-300 dark:border-[rgba(255,255,255,0.09)]">
                 <tr>

@@ -8,19 +8,20 @@ export default function Cards({isDark}) {
    const [numOfLandlords, setNumOfLandlords] = useState(null)
    const [numOfTenants, setNumofTenants] = useState(null)
 
-     useEffect(()=>{
-         fetch('http://localhost:8000/dashboard/')
-         .then(res => res.json())
-         .then(data => {
-             console.log(data)
-             if (Array.isArray(data) && data.length > 0){
-                setTotalRent(data[0].total_rent)
-                setNumOfLandlords(data[0].No_of_Landlords)
-                setNumofTenants(data[0].No_of_Tenants)
-             }
-         })
-         .then(error => console.error(error))
-     },[])
+    const fetchData = async (url = '/dashboard/') => {
+        const params = new URLSearchParams()
+
+        const finalURL = `${url}${toString() ? `?${toString()}` : ''}`
+        const response = await getAPI (finalURL)
+
+        setTotalRent(response.total_rent)
+        setNumOfLandlords(response.No_of_landlords)
+        setNumofTenants(response.No_of_Tenants)
+    }
+
+    useEffect(() => {
+        fetchData()
+    },[])
      
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4'>
