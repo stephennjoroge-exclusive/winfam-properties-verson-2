@@ -7,7 +7,7 @@ import useDynamicAPI from '../useDynamicAPI';
 export default function Cards({isDark}) {
    const [totalRent, setTotalRent] = useState(null)
    const [numOfLandlords, setNumOfLandlords] = useState(null)
-   const [numOfTenants, setNumofTenants] = useState(null)
+   const [numOfTenants, setNumOfTenants] = useState(null)
    const {getAPI} = useDynamicAPI();
 
     const fetchData = async () => {
