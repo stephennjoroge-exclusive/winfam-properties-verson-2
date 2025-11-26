@@ -56,13 +56,21 @@ const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
   },[])
 
   useEffect(() => {
-    try{
-      const response = getAPI('/landlords/')
-      setLandlord(response.results)
-    }catch(error){
-      console.log(error)
-    }
-  },[])
+    const fetchLandlords = async () => {
+      try {
+        setFetchingLandlords(true);
+        const response = await getAPI('/landlords/');
+        setLandlord(response.results);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setFetchingLandlords(false);
+      }
+    };
+
+    fetchLandlords();
+  }, []);
+
 
   const handleEdit = (id) => {
     const propertyEdit = property.find(items => items.id === id)
