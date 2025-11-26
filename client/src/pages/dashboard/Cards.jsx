@@ -14,9 +14,9 @@ export default function Cards({isDark}) {
         try {
         const response = await getAPI("/dashboard/");
 
-        setTotalRent(response.total_rent);
-        setNumOfLandlords(response.No_of_landlords);
-        setNumOfTenants(response.No_of_Tenants);
+        setTotalRent(response[0].total_rent);
+        setNumOfLandlords(response[0].No_of_Landlords);
+        setNumOfTenants(response[0].No_of_Tenants);
         } catch (error) {
         console.error("Dashboard fetch error:", error);
         }
