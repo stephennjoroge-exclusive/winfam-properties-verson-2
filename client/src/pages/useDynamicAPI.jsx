@@ -26,12 +26,10 @@ const useDynamicAPI = () => {
        const url = endpoint.startsWith('http') ? endpoint : `${API}${endpoint}`;
         const response = await fetch(url, {method: 'DELETE'});
         if (!response.ok) throw new Error(`DELETE ${endpoint} Failed`);
-        try {
-            return await response.json();
-        }catch(error) {
-           return {}
-        }
-    }
+
+        if (response.status === 204 || response.headers.get('Content-Length') === '0') {
+        return {}; 
+    }}
 
     const putAPI = async (endpoint, body) => {
         const url = endpoint.startsWith('http') ? endpoint : `${API}${endpoint}`
