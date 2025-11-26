@@ -57,15 +57,19 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
   }
 
   useEffect(() =>{
-   try {
-    setFetchingData(true)
-    const response = getAPI('/property/')
-    setProperty(response[0].results)
-   }catch(error){
-    console.log('There was an error fetching the properties')
-   }finally{
-    setFetchingData(false)
-   }
+    const fetchData = async () => {
+      try {
+        setFetchingData(true)
+        const response = await getAPI('/property/')
+        setProperty(`${response[0].landlord_detail.first_name} ${response[0].landlord_detail.last_name}`)
+      }catch(error){
+        console.log('There was an error fetching the properties')
+      }finally{
+        setFetchingData(false)
+      }
+    }
+
+    fetchData()
 
   }, [openModal])
 
