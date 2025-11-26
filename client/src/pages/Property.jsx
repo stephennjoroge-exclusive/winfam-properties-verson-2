@@ -27,7 +27,7 @@ const property = () => {
     location: '',
     total_units: ''
   }) 
-const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
+const {deleteAPI, postAPI, getAPI } = useDynamicAPI()
   
   const fetchData = async (url = '/property/') => {
     try{
@@ -81,7 +81,7 @@ const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
 
   const handleDelete = async (id) => {
     try{
-      const response = await deleteAPi(`/property/${id}/`);
+      const response = await deleteAPI(`/property/${id}/`);
       setProperty(prev => prev.filter(items => items.id !== id))
     }catch(error){
       console.log(error)
