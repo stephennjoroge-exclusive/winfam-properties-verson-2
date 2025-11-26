@@ -106,7 +106,7 @@ const Units = () => {
   
         const response = await getAPI(finalUrl);
   
-        setUnit(Array.isArray(response.results) ? response.results : [])
+        setUnit(Array.isArray(response) ? response : (response.results || []))
         setNext(response.next);
         setPrevious(response.previous);
         setCount(response.count);
