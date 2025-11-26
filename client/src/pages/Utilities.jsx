@@ -9,6 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import axios from  'axios'
 import UtilitiesData from '../components/data/UtilitiesData';
 import UtilitiesModal from '../components/modals/UtilitiesModal';
+import useDynamicAPI from './useDynamicAPI';
 
 const Invoice = () => {
   const [openModal, setOpenModal] = useState(false)
@@ -30,24 +31,27 @@ const Invoice = () => {
     current_reading: '',
     date: ''
   })
+  const {getAPI, postAPI, deleteAPI} = useDynamicAPI();
 
-  const fetchData = async (url = 'http://localhost:8000/utilities/') => {
+  const fetchData = async (url = '/utilities/') => {
     try {
-      const urlObj = new URL(url, 'http://localhost:8000');
-      const params = new URLSearchParams(urlObj.search);
+      setLoading(true)
+      const params = new URLSearchParams();
 
-      const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
+      const finalUrl = `${url}${toString() ? `?${toString()}` : ''}`
       const response = await axios.get(finalUrl);
 
-      setUtilities(response.data.results || [])
-      setNext(response.data.next)
-      setPrevious(response.data.previous)
-      setCount(response.data.count)
+      setUtilities(Array.isArray(response.results) ? response.results : [])
+      setNext(response.next)
+      setPrevious(response.previous)
+      setCount(response.count)
 
       const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
       setCurrentPage(paramPage)
     }catch(error){
       console.log('fetch error', error)
+    }finally{
+      setLoading(false)
     }
   }
 

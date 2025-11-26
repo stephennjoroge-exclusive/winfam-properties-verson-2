@@ -33,6 +33,11 @@ const useDynamicAPI = () => {
         }
     }
 
+    // const putAPI = async (endpoint) => {
+    //     const url = endpoint.startsWith('http') ? endpoint : `${API}${endpoint}`
+    //     const response fetch
+    // }
+
     return {getAPI, postAPI, deleteAPI};
 }
 

@@ -31,43 +31,29 @@ const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
   
   const fetchData = async (url = '/property/') => {
     try{
-      const urlObj = new URL(url, import.meta.env.VITE_API_URL);
-      const params = new URLSearchParams(urlObj.search);
+      setLoading(true)
+      const params = new URLSearchParams();
 
-      const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
+      const finalUrl = `${url}${params.toString()? `?${params.toString()}`: ''}` ;
       const response = await getAPI(finalUrl);
 
-      setProperty(response.data.results || [])
-      setNext(response.data.next)
-      setPrevious(response.data.previous)
-      setCount(response.data.count)
+      setProperty(Array.isArray(response.results) ? response.results : [])
+      setNext(response.next)
+      setPrevious(response.previous)
+      setCount(response.count)
 
       const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
       setCurrentPage(paramPage)
     } catch(error){
       console.log(error)
+    }finally{
+      setLoading(false)
     }
   }
 
   useEffect(() => {
     fetchData()
   },[])
-
-  
- useEffect(() => {
-  const fetchData = async () => {
-    try{
-      const response = getAPI('/property/')
-      setProperty(response.results || [])
-    } catch(error){
-      console.log('There was error', error)
-    }finally{
-      setLoading(false)
-    }
-  }
-
-  fetchData();
- }, [])
 
   useEffect(() => {
     if (!openModal) return;

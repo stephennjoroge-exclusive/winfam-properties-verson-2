@@ -35,21 +35,23 @@ const Expenses = () => {
 
   const fetchData = async(url = '/expenses/') => {
     try{
-      const urlObj = new URL(url, 'http://localhost:8000/');
-      const params = new URLSearchParams(urlObj.search);
+      setLoading(true)
+      const params = new URLSearchParams();
 
-      const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`
-      const response = await axios.get(finalUrl);
+      const finalUrl = `${url}${toString() ? `?${toString()}` : ''}`
+      const response = await getAPI(finalUrl);
 
-      setExpenses(response.data.results || [])
-      setNext(response.data.next)
-      setPrevious(response.data.previous)
-      setCount(response.data.count)
+      setExpenses(Array.isArray(response.results) ? response.results : [])
+      setNext(response.next)
+      setPrevious(response.previous)
+      setCount(response.count)
 
       const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
       setCurrentPage(paramPage)
     } catch(error){
       console.log('Fetch error', error)
+    }finally{
+      setLoading(false)
     }
   }
 
@@ -57,37 +59,6 @@ const Expenses = () => {
     fetchData()
   },[])
 
-  useEffect(() =>{
-
-    const fetchExpenses = async () => {
-      try{
-        const response = await getAPI('/expenses/')
-        setExpenses(response.results || [])
-      }catch(error){
-        console.log('There was an error', error)
-      } finally{
-        setLoading(false)
-      }
-    }
-
-    fetchExpenses()
-  },[])
-
-      // fetch(`${API}/expenses/`)
-    //   .then((response) =>{
-    //     if(!response.ok) {
-    //       throw new Error('There was an error fetching the data')
-    //     }
-    //     return response.json()
-    //   })
-    //   .then((data) =>{
-    //     setExpenses(data.results || []);
-    //     setLoading(false)
-    //   })
-    //   .catch((error) =>{
-    //     console.log("There was an error fetching the data", error);
-    //     setLoading(false)
-    //   })
 
    useEffect(() =>{
     if(!openModal) return;

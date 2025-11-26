@@ -1,14 +1,13 @@
-import React from 'react'
 import {useEffect, useState} from 'react'
-import { GoPencil } from "react-icons/go";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import useDynamicAPI from '../useDynamicAPI';
 
 const RecentTenants = ({setInfoModal}) => {
     const [tenants , setTenants] = useState([]);
     const [loading, setLoading] = useState(false)
+    const {getAPI} = useDynamicAPI();
 
   useEffect(() =>{
-    fetch('http://127.0.0.1:8000/tenants/')
+    getAPI('/tenants/')
       .then((response) =>{
         if(!response.ok){
           throw new Error('There was an error fetching the data')

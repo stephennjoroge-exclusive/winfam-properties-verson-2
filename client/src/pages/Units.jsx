@@ -81,8 +81,8 @@ const Units = () => {
     
     const fetchData = async (url = "/units/") => {
       try {
-        const urlObj = new URL(url, import.meta.env.VITE_API_URL);
-        const params = new URLSearchParams(urlObj.search);
+        setLoading(true)
+        const params = new URLSearchParams();
   
         params.delete("unit_type");
         if (filterData.unit_type) params.set("unit_type", filterData.unit_type.toLowerCase());
@@ -102,23 +102,22 @@ const Units = () => {
         params.delete('search')
         if(filterData.search) params.set('search', filterData.search.toLowerCase())
   
-        const finalUrl = `${urlObj.origin}${urlObj.pathname}?${params.toString()}`;
+        const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`
   
         const response = await getAPI(finalUrl);
   
-        setUnit(response.data.results || []);
-        setNext(response.data.next);
-        setPrevious(response.data.previous);
-        setCount(response.data.count);
+        setUnit(Array.isArray(response.results) ? response.results : [])
+        setNext(response.next);
+        setPrevious(response.previous);
+        setCount(response.count);
   
         const paramPage = params.get("page") ? parseInt(params.get("page")) : 1;
         setCurrentPage(paramPage);
       } catch (error) {
         console.error("Fetch error:", error);
-      }
-    };
-  
-  
+      }finally{ 
+        setLoading(false)
+      }};
   
     useEffect(() => {
       fetchData()
