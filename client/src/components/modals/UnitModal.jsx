@@ -146,7 +146,7 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
                     <option value='' className='font-bold'>Select {label}</option>
                     {name === 'property' ? 
                       property.map((items) => (
-                        <option key={items.id} value={items.id}>{items.landlord_detail?.first_name} {items.landlord_detail?.last_name}</option>
+                        <option key={items.id} value={items.id}>{items.landlordName}</option>
                       ))
                       :options?.map((items) =>(
                       <option key={items.value} value={items.value}>{items.label}</option>
