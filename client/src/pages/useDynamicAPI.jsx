@@ -35,7 +35,7 @@ const useDynamicAPI = () => {
 
     const putAPI = async (endpoint, body) => {
         const url = endpoint.startsWith('http') ? endpoint : `${API}${endpoint}`
-        const response =  fetch (url, {
+        const response = await fetch (url, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body)
