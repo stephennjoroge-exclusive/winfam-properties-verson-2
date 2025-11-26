@@ -60,7 +60,7 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
    try {
     setFetchingData(true)
     const response = getAPI('/property/')
-    setProperty(response.results)
+    setProperty(response[0].results)
    }catch(error){
     console.log('There was an error fetching the properties')
    }finally{
