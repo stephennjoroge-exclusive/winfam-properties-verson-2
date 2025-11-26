@@ -121,7 +121,7 @@ const Units = () => {
   
     useEffect(() => {
       fetchData()
-    },[filterData, buildSelected, typeSelected, unitSelected, rentSelected,getAPI])
+    },[filterData, buildSelected, typeSelected, unitSelected, rentSelected])
 
     const export_data = () => {
       const params = new URLSearchParams(filterData).toString();
