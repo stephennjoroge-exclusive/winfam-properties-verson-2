@@ -57,7 +57,7 @@ const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
 
   useEffect(() => {
     try{
-      const response = getAPI('/landlord/')
+      const response = getAPI('/landlords/')
       setLandlord(response.results)
     }catch(error){
       console.log(error)
