@@ -11,6 +11,11 @@ export default function Dashboard() {
 
     setData(response.occupied_units)
   }
+
+  useEffect(() => {
+    fetchData()
+  },[])
+  
 const COLORS = ["#3B82F6", "#2563EB", "#22C55E", "#16A34A", "#4ADE80", "#F97316", "#FB923C", "#F59E0B", "#FCD34D", "#3B82F6"];
 
 

@@ -2,11 +2,13 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
+import useDynamicAPI from '../useDynamicAPI';
 
 export default function Cards({isDark}) {
    const [totalRent, setTotalRent] = useState(null)
    const [numOfLandlords, setNumOfLandlords] = useState(null)
    const [numOfTenants, setNumofTenants] = useState(null)
+   const {getAPI} = useDynamicAPI();
 
     const fetchData = async () => {
         try {
