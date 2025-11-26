@@ -70,7 +70,7 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
           setProperty([])
         }
       }catch(error){
-        console.log('There was an error fetching the properties')
+        console.log('There was an error fetching the properties', error)
       }finally{
         setFetchingData(false)
       }
