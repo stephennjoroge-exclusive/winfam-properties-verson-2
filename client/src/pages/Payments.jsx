@@ -71,7 +71,7 @@ const Payments = () => {
       const finalUrl = `${url}${toString() ? `?${toString()}` : ''}`
       const response = await getAPI(finalUrl)
 
-      setPayments(Array.isArray(response.results) ? response.results : [])
+      setPayments(Array.isArray(response) ? response : (response.results || []))
       setNext(response.next)
       setPrevious(response.previous)
       setCount(response.count)
@@ -80,6 +80,8 @@ const Payments = () => {
       setCurrentPage(paramPage)
     } catch(error){
       console.log(error)
+    }finally{
+      setLoading(false)
     }
   }
 
