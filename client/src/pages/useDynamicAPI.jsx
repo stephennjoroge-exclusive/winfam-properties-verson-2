@@ -27,7 +27,7 @@ const useDynamicAPI = () => {
         const response = await fetch(url, {method: 'DELETE'});
         if (!response.ok) throw new Error(`DELETE ${endpoint} Failed`);
         try {
-            return response.json();
+            return await response.json();
         }catch(error) {
            return {}
         }
