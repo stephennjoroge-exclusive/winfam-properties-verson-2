@@ -56,19 +56,13 @@ const {deleteAPi, postAPI, getAPI } = useDynamicAPI()
   },[])
 
   useEffect(() => {
-    if (!openModal) return;
-    setFetchingLandlords(true)
-    getAPI('http://localhost:8000/landlords/')
-      .then(response => {
-        setLandlord(response.data.results || [])
-        setTimeout(() =>  setFetchingLandlords(false), 1000)
-      })
-      .catch(error =>{
-        console.log('There was an error', error)
-        setFetchingLandlords(false)
-      })
-  
-  }, [openModal])
+    try{
+      const response = getAPI('/landlord/')
+      setLandlord(response.results)
+    }catch(error){
+      console.log(error)
+    }
+  },[])
 
   const handleEdit = (id) => {
     const propertyEdit = property.find(items => items.id === id)
