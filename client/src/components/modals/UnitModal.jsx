@@ -63,6 +63,7 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
         const response = await getAPI('/property/')
         if (response.results && response.results.length > 0) {
           const landlords = response.results.map(items => ({
+            id: items.landlord_detail.id,
             landlordName: `${items.landlord_detail.first_name} ${items.landlord_detail.last_name}`
           }))
           setProperty(landlords)
@@ -71,6 +72,7 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
         }
       }catch(error){
         console.log('There was an error fetching the properties', error)
+        setProperty([])
       }finally{
         setFetchingData(false)
       }
