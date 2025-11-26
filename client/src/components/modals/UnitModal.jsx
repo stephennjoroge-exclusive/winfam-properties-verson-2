@@ -23,7 +23,11 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
       if(formData.id){
         await putAPI(`/units/${formData.id}/`, formData);
       } else {
-        await postAPI('/units/', formData);
+       try{
+         await postAPI('/units/', formData);
+       }catch(error){
+         console.error(error.response?.data || error.message);
+       }
       }
       await fetchData()
       setSuccess('Unit created successfully!');
