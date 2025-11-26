@@ -2,12 +2,14 @@ import React from 'react';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import { IoMdClose } from "react-icons/io";
+import useDynamicAPI from '../../pages/useDynamicAPI';
 
 const TenantModal = ({ openModal, setSelectedPropertyId, setOpenModal, property, fetchingData, fetchData, unit, formData, setFormData, setFetchingData}) => {
   if (!openModal) return null;
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
+  const {getAPI, putAPI, postAPI} = useDynamicAPI()
 
   
 
@@ -19,13 +21,9 @@ const TenantModal = ({ openModal, setSelectedPropertyId, setOpenModal, property,
 
     try {
       if (formData.id){
-        const response = await axios.patch(`http://localhost:8000/tenants/${formData.id}/`, formData, {
-          headers: {'Content-Type': 'application/json'}
-        })
+        const response = await putAPI(`/tenants/${formData.id}/`, formData)
       } else {
-          await axios.post('http://localhost:8000/tenants/', formData, {
-            headers: {'Content-Type': 'application/json'}
-          });
+          await postAPI('/tenants/', formData);
       }
       await fetchData()
       setSuccess('Tenant created successfully!')

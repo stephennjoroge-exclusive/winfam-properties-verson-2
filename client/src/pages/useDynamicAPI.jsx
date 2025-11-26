@@ -33,12 +33,18 @@ const useDynamicAPI = () => {
         }
     }
 
-    // const putAPI = async (endpoint) => {
-    //     const url = endpoint.startsWith('http') ? endpoint : `${API}${endpoint}`
-    //     const response fetch
-    // }
+    const putAPI = async (endpoint, body) => {
+        const url = endpoint.startsWith('http') ? endpoint : `${API}${endpoint}`
+        const response =  fetch (url, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+        if (!response.ok) throw new Error(`PATCH ${endpoint} Failed`);
+        return response.json();
+    }
 
-    return {getAPI, postAPI, deleteAPI};
+    return {getAPI, postAPI, deleteAPI, putAPI};
 }
 
 export default useDynamicAPI
