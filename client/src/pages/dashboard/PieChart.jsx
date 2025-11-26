@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from "recharts";
+import useDynamicAPI from "../useDynamicAPI";
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
+  const {getAPI} = useDynamicAPI()
 
-  useEffect(() => {
-    fetch("http://localhost:8000/analytics/")
-      .then(res => res.json())
-      .then(data => {
-        console.log("Fetched:", data);
-        setData(data[0].total_rent || []);
-      });
-  }, []);
+  const fetchData = async (url = '/analytics/') => {
+    try{
+      const params = new URLSearchParams()
 
+      const finalURL = `${url}${toString() ? `?${toString()}` : ''}`
+      const response = await getAPI(finalURL)
+
+      setData(response.occupied_units)
+    }catch(error) {
+      console.log('There was an error', error)
+    }
+  }
 const COLORS = ["#3B82F6", "#2563EB", "#22C55E", "#16A34A", "#4ADE80", "#F97316", "#FB923C", "#F59E0B", "#FCD34D", "#3B82F6"];
 
 
