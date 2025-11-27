@@ -13,5 +13,6 @@ class PropertyFilter(django_filters.FilterSet):
     def filter_search(self, queryset, name, value):
         return queryset.filter(
             Q(landlord__first_name__icontains = value) | 
-            Q(landlord__last_name__icontains = value) 
+            Q(landlord__last_name__icontains = value) |
+            Q(location__icontains = value)
         )

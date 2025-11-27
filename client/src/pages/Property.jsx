@@ -2,13 +2,10 @@ import React from 'react'
 import { IoPrintSharp } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { TiExportOutline } from "react-icons/ti";
-import { FaRegCalendarAlt } from "react-icons/fa";
 import { RiSearchLine } from "react-icons/ri";
-import { IoIosArrowDown } from "react-icons/io";
 import PropertyData from '../components/data/PropertyData';
 import {useState, useEffect} from 'react'
 import PropertyModal from '../components/modals/PropertyModal';
-import axios from 'axios'
 import useDynamicAPI from './useDynamicAPI';
 
 const property = () => {
@@ -30,7 +27,7 @@ const property = () => {
   const [filterData, setFilterData] = useState({
     search: ''
   })
-const {deleteAPI, postAPI, getAPI } = useDynamicAPI()
+  const {deleteAPI, postAPI, getAPI } = useDynamicAPI()
   
   const fetchData = async (url = '/property/') => {
     try{
@@ -124,6 +121,7 @@ const {deleteAPI, postAPI, getAPI } = useDynamicAPI()
                   onKeyDown={(e) =>{
                     if(e.key === 'Enter'){
                       e.preventDefault();
+                      console.log('steve')
                       fetchData();
                     }
                 }}
