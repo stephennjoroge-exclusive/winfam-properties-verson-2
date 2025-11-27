@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import {IoMdClose} from 'react-icons/io';
+import useDynamicAPI from '../../pages/useDynamicAPI';
 
 const PaymentModal = ({openModal, setOpenModal, formData, setFormData, fetchData}) => {
   const [success, setSuccess] = useState('')
@@ -10,6 +11,7 @@ const PaymentModal = ({openModal, setOpenModal, formData, setFormData, fetchData
   const [property, setProperty] = useState([])
   const [tenant, setTenant] = useState([])
   const [fetchingData, setFetchingData] = useState(false)
+  const {postAPI, putAPI, getAPI} = useDynamicAPI();
 
   const handleSubmit = async (e, action) =>{
     e.preventDefault()
@@ -19,14 +21,9 @@ const PaymentModal = ({openModal, setOpenModal, formData, setFormData, fetchData
 
    try {
       if (formData.id) {
-        await axios.put(`http://localhost:8000/payments/${formData.id}/`, formData, {
-            headers: { 'Content-Type': 'application/json' }
-          });
-         
+        await putAPI(`/payments/${formData.id}/`, formData);
       } else {
-        await axios.post('http://localhost:8000/payments/',formData, {
-            headers: { 'Content-Type': 'application/json' }
-          });
+        await postAPI('/payments/',formData);
       }
       await fetchData()
       setSuccess('Payment created successfully!')
@@ -65,9 +62,9 @@ const PaymentModal = ({openModal, setOpenModal, formData, setFormData, fetchData
     const fetchData = async ()  =>{
       try{
         const [unitResponse, tenantResponse, propertyResponse] = await Promise.all([
-          axios.get('http://localhost:8000/units/'),
-          axios.get('http://localhost:8000/tenants/'),
-          axios.get('http://localhost:8000/property/'),
+          getAPI('/units/'),
+          getAPI('/tenants/'),
+          getAPI('/property/'),
         ]);
         setTenant(tenantResponse.data.results || tenantResponse.data);
         setUnit(unitResponse.data.results || unitResponse.data);
