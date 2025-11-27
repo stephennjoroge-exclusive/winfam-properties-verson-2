@@ -40,7 +40,6 @@ const Invoice = () => {
     const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`;
     const response = await getAPI(finalUrl);
 
-    // Normalize data
     const data = Array.isArray(response) ? response : response.results || [];
     setUtilities(data);
     setNext(response.next || null);
