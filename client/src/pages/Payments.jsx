@@ -98,7 +98,7 @@ const Payments = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteAPI(`http://localhost:8000/payments/${id}/`);
+      await deleteAPI(`/payments/${id}/`);
       setPayments(prev => prev.filter(items => items.id !== id));
     } catch(error){
       console.log(error);
