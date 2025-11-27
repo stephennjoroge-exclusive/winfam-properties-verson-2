@@ -92,7 +92,7 @@ const Expenses = () => {
 
   const handleDelete = async (id) =>{
     try{
-      await deleteAPI(`expenses/${id}/`)
+      await deleteAPI(`/expenses/${id}/`)
       setExpenses(prev => prev.filter(items => items.id !== id))
     }catch(error){
       console.log(error)
