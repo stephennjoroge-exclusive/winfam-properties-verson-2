@@ -175,21 +175,6 @@ const Expenses = () => {
           </div>
         </div>
 
-
-        <div className='bg-gray-50 mb-2 text-[11px] font-bold text-gray-700 rounded items-center dark:bg-gray-900'>
-          <div className='flex mx-3 mb-2'>
-            <div className='px-3 py-1 border-b-2 rounded dark:text-gray-400 dark:hover:bg-gray-800 border-gray-50 hover:bg-blue-50 duration-300 dark:border-gray-900 dark:hover:border-gray-400 hover:border-blue-800 cursor-pointer'>
-              <p>All Units</p>
-            </div> 
-            <div className='px-3 py-1 border-b-2 rounded dark:text-gray-400 dark:hover:bg-gray-800 border-gray-50 hover:bg-blue-50 duration-300 dark:border-gray-900 dark:hover:border-gray-400 hover:border-blue-800 cursor-pointer'>
-              <p>All Units</p>
-            </div>
-            <div className='px-3 py-1 border-b-2 rounded dark:text-gray-400 dark:hover:bg-gray-800 border-gray-50 hover:bg-blue-50 duration-300 dark:border-gray-900 dark:hover:border-gray-400 hover:border-blue-800 cursor-pointer'>
-              <p>All Units</p>
-            </div>
-          </div>
-        </div>
-
         {openModal && <ExpensesModal
           openModal={openModal}
           setOpenModal={setOpenModal}

@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {useState} from 'react'
 import { IoMdClose } from "react-icons/io";
+import useDynamicAPI from '../../pages/useDynamicAPI';
 
 const UtilitiesModal = ({openModal, setOpenModal, property, unit, fetchingData, utilities, setUtilities, formData, setFormData, fetchData}) => {
   if(!openModal) return null;
@@ -9,6 +10,7 @@ const UtilitiesModal = ({openModal, setOpenModal, property, unit, fetchingData, 
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
+  const {postAPI, getAPI, putAPI} = useDynamicAPI()
 
   const handleSubmit = async(e, action) => {
     e.preventDefault()
@@ -18,13 +20,9 @@ const UtilitiesModal = ({openModal, setOpenModal, property, unit, fetchingData, 
 
     try {
       if(formData.id){
-        await axios.patch(`http://localhost:8000/utilities/${formData.id}/`, formData, {
-          header: {'Content-Type':'application/json'}
-        })
+        await putAPI(`/utilities/${formData.id}/`, formData)
       } else {
-        await axios.post('http://localhost:8000/utilities/', formData, {
-          header: {'Content-Type': 'application/json'}
-        })
+        await postAPI('/utilities/', formData)
       }
 
       await fetchData();

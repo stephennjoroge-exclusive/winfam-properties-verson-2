@@ -65,12 +65,12 @@ const Invoice = () => {
     const fetchDetails = async() =>{
       try{
         const [propertyResponse, unitResponse] = await Promise.all([
-          axios.get('http://localhost:8000/property/'),
-          axios.get('http://localhost:8000/units/'),
+          getAPI('/property/'),
+          getAPI('/units/'),
         ]);
 
-        setProperty(propertyResponse.data.results || []);
-        setUnit(unitResponse.data.results || []);
+        setProperty(propertyResponse.results || []);
+        setUnit(unitResponse.results || []);
       } catch(error) {
         setErrors({general: 'There was an error'})
       } finally{
@@ -80,22 +80,31 @@ const Invoice = () => {
     fetchDetails();
   }, [openModal])
 
-  useEffect(() =>{
-    fetch('http://127.0.0.1:8000/utilities/')
-      .then((response) =>{
-        if(!response.ok){
-          throw new Error('There was an error fetching the data')
-        }
-        return response.json()
-      })
-      .then((data) =>{
-        setUtilities(data.results || []);
-      })
-      .catch((error) =>{
-        console.log('There was an error fetching the data', error)
-        setLoading(false)
-      })
+
+  useEffect(() => {
+   try{
+      const response = getAPI('/utilities/');
+      setUtilities(response.results || [])
+   }catch(error){
+    console.log('There was an error fetching the utilities', error)
+   }
   },[])
+  // useEffect(() =>{
+  //   fetch('http://127.0.0.1:8000/utilities/')
+  //     .then((response) =>{
+  //       if(!response.ok){
+  //         throw new Error('There was an error fetching the data')
+  //       }
+  //       return response.json()
+  //     })
+  //     .then((data) =>{
+  //       setUtilities(data.results || []);
+  //     })
+  //     .catch((error) =>{
+  //       console.log('There was an error fetching the data', error)
+  //       setLoading(false)
+  //     })
+  // },[])
 
   const handleEdit = (id) => {
     const utilitiesEdit = utilities.find(items => items.id === id)

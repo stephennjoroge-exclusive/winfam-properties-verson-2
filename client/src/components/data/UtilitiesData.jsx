@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { GoPencil } from "react-icons/go";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 function UtilitiesData({loading, utilities, pageSize, count, currentPage, previous, next, fetchData, handleDelete, handleEdit }) {
 
@@ -29,6 +31,12 @@ function UtilitiesData({loading, utilities, pageSize, count, currentPage, previo
               <td className="py-1 text-[10px] px-2 border-b border-gray-300 dark:border-[rgba(255,255,255,0.09)]">{items.previous_reading}</td>
               <td className="py-1 text-[10px] px-2 border-b border-gray-300 dark:border-[rgba(255,255,255,0.09)]">{items.current_reading}</td>
               <td className="py-1 text-[10px] px-2 border-b border-gray-300 dark:border-[rgba(255,255,255,0.09)]">{items.date}</td>
+              <td className="py-1 text-[10px] border-b border-gray-300 dark:border-[rgba(255,255,255,0.09)]">
+                <span className="flex">
+                  <GoPencil onClick={() => handleEdit(items.id)} className="mx-2 text-[11px]"/>
+                  <RiDeleteBin6Line onClick={() => handleDelete(items.id)} className="mx-2 text-[11px]"/>
+                </span>
+              </td>
             </tr>
           ))): (
             <tr>
