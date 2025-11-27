@@ -38,10 +38,10 @@ const Invoice = () => {
       setLoading(true)
       const params = new URLSearchParams();
 
-      const finalUrl = `${url}${toString() ? `?${toString()}` : ''}`
+      const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`
       const response = await axios.get(finalUrl);
 
-      setUtilities(Array.isArray(response.results) ? response.results : [])
+      setUtilities(Array.isArray(response) ? response : (response.results || []))
       setNext(response.next)
       setPrevious(response.previous)
       setCount(response.count)
@@ -89,22 +89,7 @@ const Invoice = () => {
     console.log('There was an error fetching the utilities', error)
    }
   },[])
-  // useEffect(() =>{
-  //   fetch('http://127.0.0.1:8000/utilities/')
-  //     .then((response) =>{
-  //       if(!response.ok){
-  //         throw new Error('There was an error fetching the data')
-  //       }
-  //       return response.json()
-  //     })
-  //     .then((data) =>{
-  //       setUtilities(data.results || []);
-  //     })
-  //     .catch((error) =>{
-  //       console.log('There was an error fetching the data', error)
-  //       setLoading(false)
-  //     })
-  // },[])
+
 
   const handleEdit = (id) => {
     const utilitiesEdit = utilities.find(items => items.id === id)
@@ -115,7 +100,7 @@ const Invoice = () => {
 
   const handleDelete = async (id) => {
     try {
-      axios.delete(`http://localhost:8000/${id}/`)
+      deleteAPI(`/utilities/${id}/`)
       setUtilities(prev => prev.filter(items => items.id !== id))
     }catch(error){
       console.log(error)
@@ -194,21 +179,6 @@ const Invoice = () => {
                 <IoIosArrowDown/>
               </div>
               
-            </div>
-          </div>
-        </div>
-
-
-        <div className='bg-gray-50 mb-2 text-[11px] font-bold text-gray-700 rounded items-center dark:bg-gray-900'>
-          <div className='flex mx-3 mb-2'>
-            <div className='px-3 py-1 border-b-2 rounded dark:text-gray-400 dark:hover:bg-gray-800 border-gray-50 hover:bg-blue-50 duration-300 dark:border-gray-900 dark:hover:border-gray-400 hover:border-blue-800 cursor-pointer'>
-              <p>All Units</p>
-            </div> 
-            <div className='px-3 py-1 border-b-2 rounded dark:text-gray-400 dark:hover:bg-gray-800 border-gray-50 hover:bg-blue-50 duration-300 dark:border-gray-900 dark:hover:border-gray-400 hover:border-blue-800 cursor-pointer'>
-              <p>All Units</p>
-            </div>
-            <div className='px-3 py-1 border-b-2 rounded dark:text-gray-400 dark:hover:bg-gray-800 border-gray-50 hover:bg-blue-50 duration-300 dark:border-gray-900 dark:hover:border-gray-400 hover:border-blue-800 cursor-pointer'>
-              <p>All Units</p>
             </div>
           </div>
         </div>
