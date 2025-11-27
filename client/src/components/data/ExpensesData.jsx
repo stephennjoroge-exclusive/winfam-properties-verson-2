@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function ExpensesData({loading, expenses}) {
+function ExpensesData({loading, expenses, handleDelete, handleEdit}) {
 
   if (loading) return <p>Loading...</p>;
 
@@ -16,6 +16,7 @@ function ExpensesData({loading, expenses}) {
             <th className="py-2 px-2 border-b border-gray-300 bg-gray-50 dark:bg-gray-900 dark:border-[rgba(255,255,255,0.09)] font-bold">Cost</th>
             <th className="py-2 px-2 border-b border-gray-300 bg-gray-50 dark:bg-gray-900 dark:border-[rgba(255,255,255,0.09)] font-bold">Description</th>
             <th className="py-2 px-2 border-b border-gray-300 bg-gray-50 dark:bg-gray-900 dark:border-[rgba(255,255,255,0.09)] font-bold">Date</th>
+            <th className="py-2 px-2 border-b border-gray-300 bg-gray-50 dark:bg-gray-900 dark:border-[rgba(255,255,255,0.09)] font-bold">Operations</th>
 
           </tr>
         </thead>
@@ -29,6 +30,12 @@ function ExpensesData({loading, expenses}) {
                 <td className="py-1 text-[10px] px-2 border-b border-gray-300 dark:border-[rgba(255,255,255,0.09)]">{items.cost}</td>
                 <td className="py-1 text-[10px] px-2 border-b border-gray-300 dark:border-[rgba(255,255,255,0.09)]">{items.description}</td>
                 <td className="py-1 text-[10px] px-2 border-b border-gray-300 dark:border-[rgba(255,255,255,0.09)]">{items.date}</td>
+                <td className="py-1 text-[10px] border-b border-gray-300 dark:border-[rgba(255,255,255,0.09)]">
+                  <span className="flex">
+                    <GoPencil onClick={() => handleEdit(items.id)} className="mx-2 text-[11px]"/>
+                    <RiDeleteBin6Line onClick={() => handleDelete(items.id)} className="mx-2 text-[11px]"/>
+                  </span>
+                </td>
               </tr>
         ))}
         </tbody>

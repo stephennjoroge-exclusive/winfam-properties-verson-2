@@ -209,7 +209,7 @@ const Expenses = () => {
 
 
         <div className='text-[10px] mt-2'>
-          <ExpensesData loading={loading} expenses={expenses}/>
+          <ExpensesData loading={loading} expenses={expenses} handleDelete={handleDelete} handleEdit={handleEdit}/>
         </div>
       
       
