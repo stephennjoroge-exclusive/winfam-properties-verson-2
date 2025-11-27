@@ -87,6 +87,7 @@ const UnitModal = ({openModal, setOpenModal, formData, fetchData, setFormData, p
     { name: "property", label: "Property", type: "select" },
     { name: "unit_type", label: "Unit Type", type: "select",
       options: [
+        { value: "shop", label: "Shop" },
         { value: "single", label: "Single" },
         { value: "double_room", label: "Double Room" },
         { value: "bedsitter", label: "Bedsitter" },
