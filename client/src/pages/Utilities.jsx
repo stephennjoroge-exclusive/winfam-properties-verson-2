@@ -39,7 +39,7 @@ const Invoice = () => {
       const params = new URLSearchParams();
 
       const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`
-      const response = await axios.get(finalUrl);
+      const response = await getAPI(finalUrl);
 
       setUtilities(Array.isArray(response) ? response : (response.results || []))
       setNext(response.next)
