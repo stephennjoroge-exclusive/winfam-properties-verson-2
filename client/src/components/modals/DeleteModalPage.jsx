@@ -1,5 +1,3 @@
-import react from 'react'
-import axios from 'axios'
 import useDynamicAPI from '../../pages/useDynamicAPI'
 
 
