@@ -171,7 +171,7 @@ const Units = () => {
             </div>
 
              <div className='group flex '>
-                <div className='flex border relative cursor-pointer justify-between items-center px-2 py-1 dark:border-gray-700 border-gray-200 rounded mx-2' onClick={() => setOpenTypeFilter(prev => !prev)} >
+                <div className='flex border w-[130px] relative cursor-pointer justify-between items-center px-2 py-1 dark:border-gray-700 border-gray-200 rounded mx-2' onClick={() => setOpenTypeFilter(prev => !prev)} >
                   <FiFilter className='mr-1'/>
                   <div className='flex items-center mr-5 flex-1 w-full'>
                     {typeSelected || 'All Unit Types'}
@@ -181,7 +181,7 @@ const Units = () => {
                   {openTypeFilter && (
                     <div className='dropdown-list p-2 border-b-3 border-blue-600 dark:bg-gray-900 dark:shadow-gray-700 dark:border-blue-800 z-50 shadow shadow-blue-200 absolute w-full top-6 left-0 right-0 rounded bg-gray-100'>
                       <div onClick={(e) => {e.stopPropagation(); setTypeSelected(''); setFilterData({...filterData, unit_type: ''}); setOpenTypeFilter(false)}} className='px-2 py-1 dark:hover:bg-gray-800 rounded text-left cursor-pointer hover:bg-gray-200'>All Unit Types</div>
-                      <div onClick={(e) => {e.stopPropagation(); setTypeSelected('shop'); setFilterData({...filterData, unit_type: 'shop'}); setOpenTypeFilter(false)}} className='text-left dark:hover:bg-gray-800 rounded px-2 py-1 hover:bg-gray-200'>Single</div>
+                      <div onClick={(e) => {e.stopPropagation(); setTypeSelected('shop'); setFilterData({...filterData, unit_type: 'shop'}); setOpenTypeFilter(false)}} className='text-left dark:hover:bg-gray-800 rounded px-2 py-1 hover:bg-gray-200'>Shop</div>
                       <div onClick={(e) => {e.stopPropagation(); setTypeSelected('single'); setFilterData({...filterData, unit_type: 'single'}); setOpenTypeFilter(false)}} className='text-left dark:hover:bg-gray-800 rounded px-2 py-1 hover:bg-gray-200'>Single</div>
                       <div onClick={(e) => {e.stopPropagation(); setTypeSelected('double_room'); setFilterData({...filterData, unit_type: 'double_room'}); setOpenTypeFilter(false)}} className='text-left dark:hover:bg-gray-800 rounded px-2 py-1 hover:bg-gray-200'>Double Room</div>
                       <div onClick={(e) => {e.stopPropagation(); setTypeSelected('bedsitter'); setFilterData({...filterData, unit_type: 'bedsitter'}); setOpenTypeFilter(false)}} className='text-left dark:hover:bg-gray-800 rounded px-2 py-1 hover:bg-gray-200'>Bedsitter</div>
@@ -191,7 +191,7 @@ const Units = () => {
                   )}
                 </div>
               
-                <div className='flex border relative cursor-pointer justify-between items-center px-2 py-1 dark:border-gray-700 border-gray-200 rounded mx-2' onClick={() => setOpenBuildFilter(prev => !prev)} >
+                <div className='flex border w-[130px] relative cursor-pointer justify-between items-center px-2 py-1 dark:border-gray-700 border-gray-200 rounded mx-2' onClick={() => setOpenBuildFilter(prev => !prev)} >
                   <FiFilter className='mr-1'/>
                   <div className='flex items-center mr-5 flex-1 w-full'>
                     {buildSelected|| 'All Build Status'}
@@ -207,7 +207,7 @@ const Units = () => {
                   )}
                 </div>
               
-              <div className='flex border relative cursor-pointer justify-between items-center px-2 py-1 dark:border-gray-700 border-gray-200 rounded mx-2' onClick={() => setOpenUnitFilter(prev => !prev)} >
+              <div className='flex border w-[130px] relative cursor-pointer justify-between items-center px-2 py-1 dark:border-gray-700 border-gray-200 rounded mx-2' onClick={() => setOpenUnitFilter(prev => !prev)} >
                 <FiFilter className='mr-1'/>
                 <div className='flex items-center mr-5 flex-1 w-full'>
                   {unitSelected || 'All Unit Status'}
@@ -224,7 +224,7 @@ const Units = () => {
                 )}
               </div>
 
-              <div className='flex border relative cursor-pointer justify-between items-center px-2 py-1 dark:border-gray-700 border-gray-200 rounded mx-2' onClick={() => setOpenRentFilter(prev => !prev)} >
+              <div className='flex border w-[130px] relative cursor-pointer justify-between items-center px-2 py-1 dark:border-gray-700 border-gray-200 rounded mx-2' onClick={() => setOpenRentFilter(prev => !prev)} >
                   <FiFilter className='mr-1'/>
                   <div className='flex items-center mr-5 flex-1 w-full'>
                     {rentSelected || 'All Rent Status'}

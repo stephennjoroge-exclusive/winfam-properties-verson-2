@@ -64,6 +64,9 @@ const UNIT_STATUS_LABELS = {
                 {items.unit_type === 'double_room' && (
                   <GoDotFill className="text-purple-500 dark:text-purple-600"/>
                 )}
+                {items.unit_type === 'shop' && (
+                  <GoDotFill className="text-blue-500 dark:text-blue-600"/>
+                )}
                 {items.unit_type === 'single' && (
                   <GoDotFill className="text-stone-500 dark:text-stone-600"/>
                 )}
