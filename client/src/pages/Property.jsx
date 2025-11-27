@@ -27,6 +27,9 @@ const property = () => {
     location: '',
     total_units: ''
   }) 
+  const [filterData, setFilterData] = useState({
+    search: ''
+  })
 const {deleteAPI, postAPI, getAPI } = useDynamicAPI()
   
   const fetchData = async (url = '/property/') => {
