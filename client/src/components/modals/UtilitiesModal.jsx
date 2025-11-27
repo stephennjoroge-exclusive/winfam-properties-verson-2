@@ -20,9 +20,13 @@ const UtilitiesModal = ({openModal, setOpenModal, property, unit, fetchingData, 
 
     try {
       if(formData.id){
-        await putAPI(`/utilities/${formData.id}/`, formData)
+        const updated = await putAPI(`/utilities/${formData.id}/`, formData);
+        setUtilities(prev => prev.map(items => items.id === updated.id ? updated : items));
+        setSuccess('Utilities updated successfully!');
       } else {
-        await postAPI('/utilities/', formData)
+          const utility = await postAPI('/utilities/', formData);
+          setUtilities(prev => [utility, ...prev]);
+          setSuccess('Utilities created successfully!');
       }
 
       await fetchData();
