@@ -172,7 +172,7 @@ useEffect(() => {
                 <IoIosArrowDown className={`${openUnitFilter ? 'rotate-180 duration-300' : 'rotate-0 duration-300'}`}/>
 
                 {openUnitFilter && (
-                  <div className='dropdown-list absolute w-full top-6 left-0 right-0 rounded bg-gray-100 border border-gray-200'>
+                  <div className='dropdown-list p-2 border-b-3 border-blue-600 dark:bg-gray-900 dark:shadow-gray-700 dark:border-blue-800 z-50 shadow shadow-blue-200 absolute w-full top-6 left-0 right-0 rounded bg-gray-100'>
                     <div onClick={(e) => {e.stopPropagation(); setUnitSelected(''); setFilterData({...filterData, unit_status: ''}); setOpenUnitFilter(false)}}
                       className='px-2 py-1 text-left cursor-pointer hover:bg-gray-200'>All Unit Status</div>
 
@@ -198,7 +198,7 @@ useEffect(() => {
                 <IoIosArrowDown className={`${openRentFilter ? 'rotate-180 duration-300': 'rotate-0 duration-300'}`}/>
 
                 {openRentFilter && (
-                  <div className='dropdown-list absolute w-full top-6 left-0 right-0 rounded bg-gray-100 border border-gray-200'>
+                  <div className='dropdown-list p-2 border-b-3 border-blue-600 dark:bg-gray-900 dark:shadow-gray-700 dark:border-blue-800 z-50 shadow shadow-blue-200 absolute w-full top-6 left-0 right-0 rounded bg-gray-100'>
                     <div onClick={(e) =>{ e.stopPropagation(); setRentSelected('');setFilterData({...filterData, rent_status: ''}); setOpenRentFilter(false) }}
                       className='text-left px-2 py-1 hover:bg-gray-200'>All rent status</div>
 
