@@ -2,12 +2,14 @@ import React from 'react'
 import {useEffect, useState} from 'react'
 import { IoMdClose } from "react-icons/io";
 import axios from 'axios'
+import useDynamicAPI from '../../pages/useDynamicAPI';
 
 const ExpensesModal = ({property, unit, formData, setFormData, fetchData, fetchingData, openModal, setOpenModal}) => {
   if(!openModal) return null;
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
+  const {getAPI, postAPI, putAPI} = useDynamicAPI()
   
 
   const handleSubmit = async(e, action) => {
@@ -18,14 +20,9 @@ const ExpensesModal = ({property, unit, formData, setFormData, fetchData, fetchi
 
     try{
       if (formData.id){
-        await axios.patch(`http://localhost:8000/expenses/${formData.id}/`, formData, {
-          headers: {'Content-Type':'application/json'}
-        })
-
+        await putAPI(`/expenses/${formData.id}/`, formData)
       } else {
-        await axios.post('http://localhost:8000/expenses/', formData, {
-          headers: {'Content-Type': 'application/json'}
-        });
+        await postAPI('/expenses/', formData);
       }
      
       await fetchData()
