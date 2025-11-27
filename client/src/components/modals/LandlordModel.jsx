@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import { IoMdClose } from "react-icons/io";
+import useDynamicAPI from '../../pages/useDynamicAPI';
 
 const LandlordModel = ({openModal, setOpenModal, formData, setFormData,fetchData}) => {
   if(!openModal) return null;
@@ -9,6 +10,7 @@ const LandlordModel = ({openModal, setOpenModal, formData, setFormData,fetchData
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
+  const {postAPI, putAPI} = useDynamicAPI();
 
   const handleSubmit = async (e, action) =>{
     e.preventDefault()
@@ -18,13 +20,9 @@ const LandlordModel = ({openModal, setOpenModal, formData, setFormData,fetchData
 
     try{
       if(formData.id){
-        await axios.patch(`http://localhost:8000/landlords/${formData.id}/`, formData, {
-          headers: {'Content-Type': 'application/json'}
-        })
-      } else {
-        await axios.post('http://localhost:8000/landlords/', formData, {
-          headers: {'Content-Type': 'application/json'}
-        });
+        await putAPI(`/landlords/${formData.id}/`, formData)
+      }else {
+        await postAPI('/landlords/', formData);
       }
      
       await fetchData()
