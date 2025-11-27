@@ -33,27 +33,29 @@ const Invoice = () => {
   })
   const {getAPI, postAPI, deleteAPI} = useDynamicAPI();
 
-  const fetchData = async (url = '/utilities/') => {
-    try {
-      setLoading(true)
-      const params = new URLSearchParams();
+ const fetchData = async (url = '/utilities/') => {
+  try {
+    setLoading(true)
+    const params = new URLSearchParams();
+    const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`;
+    const response = await getAPI(finalUrl);
 
-      const finalUrl = `${url}${params.toString() ? `?${params.toString()}` : ''}`
-      const response = await getAPI(finalUrl);
+    // Normalize data
+    const data = Array.isArray(response) ? response : response.results || [];
+    setUtilities(data);
+    setNext(response.next || null);
+    setPrevious(response.previous || null);
+    setCount(response.count || data.length);
 
-      setUtilities(Array.isArray(response) ? response : (response.results || []))
-      setNext(response.next)
-      setPrevious(response.previous)
-      setCount(response.count)
-
-      const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
-      setCurrentPage(paramPage)
-    }catch(error){
-      console.log('fetch error', error)
-    }finally{
-      setLoading(false)
-    }
+    const paramPage = params.get('page') ? parseInt(params.get('page')) : 1;
+    setCurrentPage(paramPage)
+  } catch(error) {
+    console.log('fetch error', error)
+  } finally {
+    setLoading(false)
   }
+}
+
 
   useEffect(() => {
     fetchData();
