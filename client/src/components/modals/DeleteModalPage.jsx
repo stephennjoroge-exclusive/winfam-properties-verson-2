@@ -1,11 +1,13 @@
 import react from 'react'
 import axios from 'axios'
+import useDynamicAPI from '../../pages/useDynamicAPI'
 
 
 const DeleteModal = ({id, setDeleteModal, landlord, setLandlord}) => {
+  const {deleteAPI} = useDynamicAPI()
     const handleDelete = async () => {
       try {
-        axios.delete(`http://localhost:8000/landlords/${id}/`)
+        deleteAPI(`/landlords/${id}/`)
         setLandlord(prev => prev.filter(items => items.id !== id))
       } catch(error){
         console.log(error)
