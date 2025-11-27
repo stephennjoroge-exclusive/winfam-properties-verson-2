@@ -116,7 +116,16 @@ const {deleteAPI, postAPI, getAPI } = useDynamicAPI()
 
             <div className='rounded px-2 py-1 flex items-center border shadow border-gray-100 bg-gray-100 dark:bg-gray-800 dark:text-gray-500 dark:border-none'>
               <RiSearchLine  className='mr-2 text-sm' />
-              <input type="text" placeholder="Search..." className='w-[100%] text-[12px] focus:border-transparent outline-none hidden md:block' />
+              <input type="text" placeholder="Search..." value={filterData.search || ''} 
+                onChange={(e) => setFilterData({...filterData, search: e.target.value})}
+                  onKeyDown={(e) =>{
+                    if(e.key === 'Enter'){
+                      e.preventDefault();
+                      fetchData();
+                    }
+                }}
+                className='w-[100%] text-[12px] focus:border-transparent outline-none hidden md:block'
+              />
             </div>
 
           </div>
