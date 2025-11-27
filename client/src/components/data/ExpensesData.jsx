@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { GoPencil } from "react-icons/go";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 function ExpensesData({loading, expenses, handleDelete, handleEdit}) {
 
