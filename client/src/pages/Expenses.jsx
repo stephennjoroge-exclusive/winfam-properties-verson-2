@@ -70,9 +70,9 @@ const Expenses = () => {
           getAPI('/units/'),
         ]);
 
-        setProperty(propertyResponse.data.results || []);
-        setUnit(unitResponse.data.results || []);
-        console.log(propertyResponse.data.results)
+        setProperty(propertyResponse.results || []);
+        setUnit(unitResponse.results || []);
+
       } catch(error) {
         console.log(error)
         setErrors({general: 'There was an error'})
