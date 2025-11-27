@@ -6,6 +6,7 @@ class Unit(models.Model):
     unit_number = models.CharField(max_length=20)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='units', null=False)
     UNIT_TYPE_CHOICES = [
+        ('shop', 'Shop'),
         ('single', 'Single'),
         ('double_room', 'Double room'),
         ('bedsitter', 'Bedsitter'),

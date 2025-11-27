@@ -93,9 +93,9 @@ const Invoice = () => {
 
   const handleEdit = (id) => {
     const utilitiesEdit = utilities.find(items => items.id === id)
-    if (!utilitiesEdit) return null;
-    setFormData({ ...utilitiesEdit, id: utilitiesEdit.id });
-    setOpenModal(true)
+    if(!utilitiesEdit) return;
+    setFormData(utilitiesEdit)
+    setOpenModal(true);
   }
 
   const handleDelete = async (id) => {
