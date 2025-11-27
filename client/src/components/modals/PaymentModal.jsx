@@ -66,9 +66,9 @@ const PaymentModal = ({openModal, setOpenModal, formData, setFormData, fetchData
           getAPI('/tenants/'),
           getAPI('/property/'),
         ]);
-        setTenant(tenantResponse.data.results || tenantResponse.data);
-        setUnit(unitResponse.data.results || unitResponse.data);
-        setProperty(propertyResponse.data.results || propertyResponse.data);
+        setTenant(tenantResponse.results || []);
+        setUnit(unitResponse.results || []);
+        setProperty(propertyResponse.results || []);
 
       } catch(error){
         console.log(error)
