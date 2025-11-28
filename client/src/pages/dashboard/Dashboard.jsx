@@ -15,7 +15,7 @@ const Dashboard = ({isDark}) => {
         <LineCharts isDark={isDark} />
       </div>
       <div className='relative'>
-         <Link to="/chatbotfloat" className='absolute top-3 right-0 rounded'><p>button</p></Link>
+         <Link to="/chatbotfloat"><p>button</p></Link>
       </div>
       <div>
         <RecentTenants/>
