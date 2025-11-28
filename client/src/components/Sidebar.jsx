@@ -35,7 +35,7 @@ const Sidebar = ({isDark, setOpen, isOpen, setDropdownFinancials, dropdownFinanc
           <img src="/images/winfam.png" alt="" className={`h-15  w-15 flex items-center ${!isOpen && 'hidden'}`}/>
           <div className='flex flex-col items-center'>
               <p className={`items-center font-bold font-serif mt-3 ${!isOpen && 'hidden'}`}>Winfam</p>
-              <p className={`text-[10px] font-serif items-center ${!isOpen && 'hidden'}`}>Properties</p>
+              <p className={`text-[10px] font-serif items-center ${!isOpen && 'hidden'}`}>put login credentials here</p>
           </div>
         </header>
 
