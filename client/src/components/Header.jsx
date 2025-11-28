@@ -35,6 +35,10 @@ const Header = ({isDark, setDark}) => {
             <div className='cursor-pointer text-gray-700 dark:text-gray-400 items-center' onClick={darkMode}>
                 {isDark ? <IoSunnyOutline/> : <FiMoon/>}
             </div>
+
+            <div className='bg-gradient-to-r from-blue-500 to-green-500 rounded-full w-3 h-3'>
+                
+            </div>
         </div>
 
 
