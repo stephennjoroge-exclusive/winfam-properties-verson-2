@@ -36,7 +36,7 @@ const Header = ({isDark, setDark}) => {
                 {isDark ? <IoSunnyOutline/> : <FiMoon/>}
             </div>
 
-            <div className='bg-gradient-to-r from-blue-500 to-green-500 rounded-full w-3 h-3'>
+            <div className='bg-gradient-to-r from-blue-500 via-red-500  to-green-500 rounded-full w-7 h-7 cursor-pointer'>
                 
             </div>
         </div>
