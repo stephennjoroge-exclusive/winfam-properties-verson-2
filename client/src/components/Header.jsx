@@ -43,8 +43,6 @@ const Header = ({isDark, setDark}) => {
             </div>
         </div>
 
-
-       
     </div>
   )
 }
