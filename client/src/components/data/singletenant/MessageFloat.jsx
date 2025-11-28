@@ -10,7 +10,7 @@ const ChatBot = () => {
         <div className="relative">
           <button
             onClick={() => setOpen(prev => !prev)}
-            className="group bg-gradient-to-r from-sky-500 via-teal-300 to-emerald-400
+            className="group bg-gradient-to-r from-teal-400 via-lime-300 to-green-300 
                        shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] 
                        rounded-full w-14 h-14 flex items-center justify-center cursor-pointer
                        hover:scale-110 transition-transform duration-200"
@@ -30,7 +30,7 @@ const ChatBot = () => {
           <div className="mt-3 w-80 h-96 bg-white dark:bg-gray-800 rounded-xl shadow-lg 
                           flex flex-col overflow-hidden border border-gray-200 dark:border-gray-700">
             {/* Header */}
-            <div className="bg-gradient-to-r from-sky-500 via-teal-300 to-emerald-400 p-3 flex justify-between items-center">
+            <div className="bg-gradient-to-r from-teal-400 via-lime-300 to-green-300 p-3 flex justify-between items-center">
               <h2 className="text-white font-semibold">AI Assistant</h2>
               <button onClick={() => setOpen(false)} className="text-white text-lg font-bold">
                 ×
@@ -55,7 +55,7 @@ const ChatBot = () => {
                 placeholder="Type a message..."
                 className="flex-1 rounded-full border border-gray-300 dark:border-gray-600 px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 dark:bg-gray-700"
               />
-              <button className="ml-2 from-sky-500 via-teal-300 to-emerald-400 text-white px-3 py-1 rounded-full text-sm hover:brightness-110 transition">
+              <button className="ml-2 bg-teal-400 dark:bg-lime-300 text-white px-3 py-1 rounded-full text-sm hover:brightness-110 transition">
                 Send
               </button>
             </div>
