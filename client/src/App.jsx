@@ -12,7 +12,7 @@ import Payments from './pages/Payments'
 import Expenses from './pages/Expenses';
 import Utilities from './pages/Utilities';
 import Chatbot from './pages/Chatbot';
-import ChatbotFloat from './pages/ChatbotFloat';
+import ChatbotFloat from './components/data/singletenant/MessageFloat';
 import TenantMetrics from './pages/analytics/TenantMetrics'
 import PropertyMetrics from './pages/analytics/PropertyMetrics'
 

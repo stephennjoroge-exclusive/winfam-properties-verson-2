@@ -6,6 +6,7 @@ import SingleTenantgraph from '../singletenant/SingleTenantgraph';
 import {useEffect, useState} from 'react'
 import { IoIosArrowDown } from "react-icons/io";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi2";
+import MessageFloat from './MessageFloat'
 
 const SingleTenant = ({id, setInfoModal, tenants, setTenants}) => {
     const [tenantsStats, setTenantsStats] = useState({})
@@ -97,6 +98,7 @@ const SingleTenant = ({id, setInfoModal, tenants, setTenants}) => {
                                         <p className='text-gray-700 dark:text-gray-400 text-[10px] p-1 items-center'>{items.id_number}</p>
                                         <p className='text-gray-700 dark:text-gray-400 text-[10px] p-1 items-center'>{items.phone}</p>
                                     </div>
+                                    <MessageFloat/>
                                 </div>
 
                                 <div className='flex'>
