@@ -43,7 +43,7 @@ const Chatbot = () => {
                 <div ref={chatEndRef}></div>
             </div>
 
-            <div className="p-4 w-[70%] bg-white rounded-2xl flex items-center justify-center sticky bottom-0 shadow-inner">
+            <div className="p-4 w-[70%] mx-auto bg-white rounded-2xl flex items-center justify-center sticky bottom-0 shadow-inner">
                 <input
                     type="text"
                     value={input}
