@@ -89,7 +89,7 @@ const Landlord = () => {
                 <TiExportOutline className='mr-1'/>
                 <a href="" className='text-[10px]'>Export</a>
               </div>
-              <div className='flex items-center cursor-pointer bg-gradient-to-r from-sky-500 via-blue-400 to-emerald-500 dark:text-gray-300 px-3 py-1 rounded text-[12px] text-white'>
+              <div className='flex items-center cursor-pointer bg-gradient-to-r from-blue-500 to-emerald-500 dark:text-gray-300 px-3 py-1 rounded text-[12px] text-white'>
                 <FaPlus className='mr-2 cursor-pointer '/>
                 <button onClick={() => setOpenModal(true)} className='cursor-pointer dark:text-gray-200 text-white'>Add Landlord</button>
               </div>
