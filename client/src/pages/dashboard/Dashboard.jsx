@@ -3,6 +3,7 @@ import Cards from '../dashboard/Cards';
 import Charts from './LineChart';
 import LineCharts from './PieChart';
 import RecentTenants from './RecentTenants'
+import {Link} from 'react-router-dom'
 
 
 const Dashboard = ({isDark}) => {
@@ -13,6 +14,7 @@ const Dashboard = ({isDark}) => {
         <Charts isDark={isDark}/>
         <LineCharts isDark={isDark} />
       </div>
+      <Link to="chatbotfloat"></Link>
       <div>
         <RecentTenants/>
       </div>

@@ -12,6 +12,7 @@ import Payments from './pages/Payments'
 import Expenses from './pages/Expenses';
 import Utilities from './pages/Utilities';
 import Chatbot from './pages/Chatbot';
+import ChatbotFloat from './pages/ChatbotFloat';
 import TenantMetrics from './pages/analytics/TenantMetrics'
 import PropertyMetrics from './pages/analytics/PropertyMetrics'
 
@@ -47,6 +48,7 @@ const App = () => {
                 <Route path='/expenses' element={<Expenses isDark={isDark}/>}/>
                 <Route path='/utilities' element={<Utilities isDark={isDark}/>}/>
                 <Route path='/chatbot' element={<Chatbot isDark={isDark}/>}/>
+                <Route path='/chatbotfloat' element={<ChatbotFloat isDark={isDark}/>}/>
                 <Route path='/analytics' element={<Navigate to='/tenantMetrics' replace isDark={isDark}/>}/>
                 <Route path='/tenantMetrics' element={<TenantMetrics isDark={isDark}/>}/>
                 <Route path='/propertyMetrics' element={<PropertyMetrics isDark={isDark}/>}/>
