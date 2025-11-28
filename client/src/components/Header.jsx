@@ -4,6 +4,7 @@ import { FiMoon } from "react-icons/fi";
 import { RiSearchLine } from "react-icons/ri";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import Breadcrumbs from './Breadcrumps';
+import {Link} from 'react-router-dom'
 
 const Header = ({isDark, setDark}) => {
 
@@ -36,11 +37,11 @@ const Header = ({isDark, setDark}) => {
                 {isDark ? <IoSunnyOutline/> : <FiMoon/>}
             </div>
 
-           <div className='group bg-gradient-to-r relative from-teal-400 via-lime-300 to-green-300 shadow-[inset_0_2px_4px_rgba(0,0,0,1)] rounded-full w-7 h-7 cursor-pointer'>
+           <Link to='/chatbot' className='group bg-gradient-to-r relative from-teal-400 via-lime-300 to-green-300 shadow-[inset_0_2px_4px_rgba(0,0,0,1)] rounded-full w-7 h-7 cursor-pointer'>
                 <div className='absolute top-8 hover:opacity-0 opacity-0 group-hover:opacity-100 right-0 bg-black rounded px-2 py-1 '>
                     <p className='text-white text-[10px]'>ChatBot</p>
                 </div>
-            </div>
+            </Link>
         </div>
 
     </div>
