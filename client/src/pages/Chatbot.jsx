@@ -21,8 +21,8 @@ const Chatbot = () => {
     },[messages])
 
   return (
-    <div className="h-screen bg-gray-100 flex flex-col">
-        <div className="bg-gradient-to-r from-teal-400 via-lime-300 to-green-300 p-4 text-white font-bold text-lg shadow-md">
+    <div className="h-screen text-[10px] bg-gray-100 flex flex-col">
+        <div className="bg-gradient-to-r from-teal-400 via-lime-300 sticky top-0 to-green-300 p-4 text-white font-bold text-lg shadow-md">
             Chat with AI
         </div>
 
