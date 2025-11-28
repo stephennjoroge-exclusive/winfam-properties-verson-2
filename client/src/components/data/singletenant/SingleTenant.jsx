@@ -98,7 +98,9 @@ const SingleTenant = ({id, setInfoModal, tenants, setTenants}) => {
                                         <p className='text-gray-700 dark:text-gray-400 text-[10px] p-1 items-center'>{items.id_number}</p>
                                         <p className='text-gray-700 dark:text-gray-400 text-[10px] p-1 items-center'>{items.phone}</p>
                                     </div>
-                                    <MessageFloat/>
+                                    <div className='z-50'>
+                                        <MessageFloat/>
+                                    </div>
                                 </div>
 
                                 <div className='flex'>
