@@ -41,7 +41,7 @@ const Header = ({isDark, setDark}) => {
                 <div className='absolute top-8 hover:opacity-0 opacity-0 group-hover:opacity-100 right-0 bg-black rounded px-2 py-1 '>
                     <p className='text-white text-[10px]'>ChatBot</p>
                 </div>
-                <p className='text-white font-bold font-mono text-[10px]'>AI</p>
+                <p className='flex items-center justify-center text-white font-bold font-mono text-[10px]'>AI</p>
             </Link>
         </div>
 
