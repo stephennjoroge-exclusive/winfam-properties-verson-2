@@ -1,3 +1,4 @@
+import React from 'react'
 import {useState, useEffect, useRef} from 'react'
 
 const Chatbot = () => {
@@ -20,13 +21,14 @@ const Chatbot = () => {
         chatEndRef.current?.scrollIntoView({behavior: 'smooth'})
     },[messages])
 
-  return (
-    <div className="h-screen text-[10px] bg-gray-100 flex flex-col">
-        <div className="bg-gradient-to-r from-sky-500 via-teal-300 to-emerald-400 p-4 text-white font-bold text-lg shadow-md">
-            Chat with AI
-        </div>
 
-        <div className='flex-1 flex flex-col'>
+  return (
+    <div className='flex flex-col'>
+        <header className='flex items-center justify-center w-full bg-gradient-to-r  from-sky-400 via-lime-300 to-teal-300 text-white h-[50px] '>
+            <p className='font-bold font-mono text-2xl'>Chat with AI</p>
+        </header>
+
+        <div className='flex flex-1 flex-col'>
             <div className="flex-1 overflow-y-auto p-4 space-y-2">
                 {messages.map((msg, id) => (
                 <div
