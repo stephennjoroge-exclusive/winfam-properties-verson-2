@@ -28,7 +28,7 @@ const Chatbot = () => {
             <p className='font-bold font-mono text-2xl'>Chat with AI</p>
         </header>
 
-        <div className='flex flex-1 flex-col'>
+        <div className='flex flex-1 flex-col justify-between'>
             <div className="flex-1 overflow-y-auto p-4 space-y-2">
                 {messages.map((msg, id) => (
                 <div
