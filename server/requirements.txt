@@ -1,4 +1,5 @@
 algoliasearch==2.6.3
+python-decouple==3.8
 algoliasearch-django==2.0.0
 asgiref==3.8.1
 certifi==2025.1.31
